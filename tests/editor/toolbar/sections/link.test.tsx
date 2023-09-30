@@ -5,13 +5,13 @@ import userEvent from "@testing-library/user-event";
 
 import LinkSection from "../../../../src/editor/toolbar/sections/link";
 import { LIST_EXAMPLES } from "../../../../stories/mocks/content";
-import { getCustomEditor } from "../../../utils";
-import type { CustomEditor } from "../../../../src/editor/types";
+import { getGraniteEditor } from "../../../utils";
+import type { GraniteEditor } from "../../../../src/editor/types";
 
 describe("Link Toolbar Section & Link Overlay", () => {
-  let editor: CustomEditor;
+  let editor: GraniteEditor;
   beforeEach(() => {
-    editor = getCustomEditor();
+    editor = getGraniteEditor();
   });
 
   test("Link Button correctly handles when an edtior selection is a NOT link", async () => {

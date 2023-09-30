@@ -17,7 +17,7 @@ import {
 import Color from "../../icons/color";
 import styled from "styled-components";
 import { ThemeConfiguration } from "../../../theme/types";
-import { CustomEditor, CustomElement } from "../../../types";
+import { GraniteEditor, CustomElement } from "../../../types";
 import Button from "../../components/button";
 import { isLinkActive } from "../../../actions";
 
@@ -78,7 +78,7 @@ interface ColorConfigOverlayProps {
   currentNode: CustomElement;
 }
 
-const getCurrentColor = (editor: CustomEditor, primaryTextColor: string) => {
+const getCurrentColor = (editor: GraniteEditor, primaryTextColor: string) => {
   const activeColor = getActiveTextColor(editor);
   return activeColor === "PRIMARY" ? primaryTextColor : activeColor;
 };

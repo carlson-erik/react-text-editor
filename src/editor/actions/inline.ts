@@ -2,24 +2,24 @@ import { ReactEditor } from "slate-react";
 import { Editor, Element, Transforms, Range, Path } from "slate";
 import isUrl from "is-url";
 
-import { CustomEditor, CustomElement, LinkInlineElement } from "../types";
+import { GraniteEditor, CustomElement, LinkInlineElement } from "../types";
 import { getElementPath, getElementNode } from "./";
 
-const isInlineActive = (editor: CustomEditor) => {
+const isInlineActive = (editor: GraniteEditor) => {
   const [link] = Editor.nodes(editor, {
     match: (n) => Element.isElement(n) && n.type === "link",
   });
   return !!link;
 };
 
-const getContainer = (editor: CustomEditor): CustomElement | null => {
+const getContainer = (editor: GraniteEditor): CustomElement | null => {
   if (!isInlineActive(editor)) return null;
   const parentPath = getContainerPath(editor);
   if (!parentPath) return null;
   return getElementNode(editor, parentPath);
 };
 
-const getContainerPath = (editor: CustomEditor): Path | null => {
+const getContainerPath = (editor: GraniteEditor): Path | null => {
   if (!isInlineActive(editor)) return null;
   const path = getElementPath(editor);
   if (!path) return null;
@@ -27,14 +27,14 @@ const getContainerPath = (editor: CustomEditor): Path | null => {
   return path;
 };
 
-const getContainerParent = (editor: CustomEditor): CustomElement | null => {
+const getContainerParent = (editor: GraniteEditor): CustomElement | null => {
   if (!isInlineActive(editor)) return null;
   const containerParentPath = getContainerParentPath(editor);
   if (!containerParentPath) return null;
   return getElementNode(editor, containerParentPath);
 };
 
-const getContainerParentPath = (editor: CustomEditor): Path | null => {
+const getContainerParentPath = (editor: GraniteEditor): Path | null => {
   if (!isInlineActive(editor)) return null;
   const containerPath = getContainerPath(editor);
   if (!containerPath || containerPath.length === 1) return null;
@@ -42,7 +42,7 @@ const getContainerParentPath = (editor: CustomEditor): Path | null => {
   return containerPath;
 };
 
-const updateLink = (editor: CustomEditor, url: string) => {
+const updateLink = (editor: GraniteEditor, url: string) => {
   const elementPath = getElementPath(editor);
   if (isLinkActive(editor) && elementPath) {
     Transforms.setNodes(editor, { url }, { at: elementPath });
@@ -50,7 +50,7 @@ const updateLink = (editor: CustomEditor, url: string) => {
   }
 };
 
-const insertLink = (editor: CustomEditor, url: string, linkLabel?: string) => {
+const insertLink = (editor: GraniteEditor, url: string, linkLabel?: string) => {
   if (!isLinkActive(editor)) {
     const link: LinkInlineElement = {
       type: "link",
@@ -63,7 +63,7 @@ const insertLink = (editor: CustomEditor, url: string, linkLabel?: string) => {
   }
 };
 
-const isLinkActive = (editor: CustomEditor) => {
+const isLinkActive = (editor: GraniteEditor) => {
   const [link] = Editor.nodes(editor, {
     match: (n) =>
       !Editor.isEditor(n) && Element.isElement(n) && n.type === "link",
@@ -71,7 +71,7 @@ const isLinkActive = (editor: CustomEditor) => {
   return !!link;
 };
 
-const wrapLink = (editor: CustomEditor, url: string) => {
+const wrapLink = (editor: GraniteEditor, url: string) => {
   if (isLinkActive(editor)) {
     unwrapLink(editor);
   }
@@ -92,14 +92,14 @@ const wrapLink = (editor: CustomEditor, url: string) => {
   }
 };
 
-const unwrapLink = (editor: CustomEditor) => {
+const unwrapLink = (editor: GraniteEditor) => {
   Transforms.unwrapNodes(editor, {
     match: (n) =>
       !Editor.isEditor(n) && Element.isElement(n) && n.type === "link",
   });
 };
 
-const withInlines = (editor: CustomEditor) => {
+const withInlines = (editor: GraniteEditor) => {
   const { insertData, insertText, isInline } = editor;
 
   editor.isInline = (element: Element) => {

@@ -10,7 +10,7 @@ import {
   getParentElementNode,
   setElementType,
 } from "../actions";
-import { CustomEditor, ElementType } from "../types";
+import { GraniteEditor, ElementType } from "../types";
 /* -------- Theme -------- */
 import { ThemeContext } from "../theme/context";
 import { ThemeConfiguration } from "../theme/types";
@@ -196,7 +196,7 @@ const getAllElements = (
 
 // Gets the active element and as long as it exists, we find the current Element
 const getCurrentOption = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   theme: ThemeConfiguration
 ): Option | null => {
   let activeElement = getElementNode(editor);

@@ -5,7 +5,7 @@ import {
   getParentElementNode,
 } from "./element";
 import {
-  CustomEditor,
+  GraniteEditor,
   ListElement,
   ListElementType,
   ListItemElement,
@@ -27,7 +27,7 @@ const isListElement = (element: Descendant | null): element is ListElement => {
 };
 
 const mergeWithPreviousList = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   listPath: Path,
   listItemNode: ListItemElement,
   listNode: ListElement,
@@ -45,11 +45,15 @@ const mergeWithPreviousList = (
   // Insert new node
   Transforms.insertNodes(editor, mergedNode, { at: listPath });
   // Focus correct location in new merged node
-  focusPath(editor, [...listPath, listNode.children.length, ...finalFocusPath], finalFocusOffset);
+  focusPath(
+    editor,
+    [...listPath, listNode.children.length, ...finalFocusPath],
+    finalFocusOffset
+  );
 };
 
 const mergeWithNextList = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   listItemPath: Path,
   listItemNode: ListItemElement,
   listNode: ListElement,
@@ -71,7 +75,7 @@ const mergeWithNextList = (
 };
 
 const mergeTwoLists = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   currentListItem: ListItemElement,
   prevListPath: Path,
   prevList: ListElement,
@@ -91,11 +95,15 @@ const mergeTwoLists = (
   // Insert new node
   Transforms.insertNodes(editor, mergedNode, { at: prevListPath });
   // Focus correct location in new merged node
-  focusPath(editor, [...prevListPath, prevList.children.length, ...finalFocusPath], finalFocusOffset);
+  focusPath(
+    editor,
+    [...prevListPath, prevList.children.length, ...finalFocusPath],
+    finalFocusOffset
+  );
 };
 
 const wrapListItem = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   path: Path,
   node: ListItemElement,
   listType: ListElementType,
@@ -109,10 +117,10 @@ const wrapListItem = (
   };
   Transforms.removeNodes(editor, { at: path });
   Transforms.insertNodes(editor, listNode, { at: path });
-  focusPath(editor, [...path, 0, ...finalFocusPath], finalFocusOffset );
+  focusPath(editor, [...path, 0, ...finalFocusPath], finalFocusOffset);
 };
 
-const indentListItem = (editor: CustomEditor) => {
+const indentListItem = (editor: GraniteEditor) => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)
@@ -124,7 +132,7 @@ const indentListItem = (editor: CustomEditor) => {
     ? getContainerParent(editor)
     : getParentElementNode(editor);
   if (
-    editor.selection && 
+    editor.selection &&
     currentNode &&
     currentNode.type === "list-item" &&
     currentPath &&
@@ -135,7 +143,7 @@ const indentListItem = (editor: CustomEditor) => {
     if (parentNode.children.length === 1) return;
 
     // Get the current node's index (for parentNode's children)
-    const currentNodeIndex = currentPath[currentPath.length - 1]
+    const currentNodeIndex = currentPath[currentPath.length - 1];
 
     const selectionPath = editor.selection.anchor.path;
     const finalFocusPath = activeInline
@@ -171,11 +179,32 @@ const indentListItem = (editor: CustomEditor) => {
           finalfocusOffset
         );
       } else if (isListElement(nextNodeItem)) {
-        mergeWithNextList(editor, currentPath, currentNode, nextNodeItem, finalFocusPath, finalfocusOffset);
+        mergeWithNextList(
+          editor,
+          currentPath,
+          currentNode,
+          nextNodeItem,
+          finalFocusPath,
+          finalfocusOffset
+        );
       } else if (isListElement(prevNodeItem)) {
-        mergeWithPreviousList(editor, prevNodePath, currentNode, prevNodeItem, finalFocusPath, finalfocusOffset);
+        mergeWithPreviousList(
+          editor,
+          prevNodePath,
+          currentNode,
+          prevNodeItem,
+          finalFocusPath,
+          finalfocusOffset
+        );
       } else {
-        wrapListItem(editor, currentPath, currentNode, parentNode.type, finalFocusPath, finalfocusOffset);
+        wrapListItem(
+          editor,
+          currentPath,
+          currentNode,
+          parentNode.type,
+          finalFocusPath,
+          finalfocusOffset
+        );
       }
     } else if (currentNodeIndex === 0) {
       // Create Path to the node after the current node
@@ -185,9 +214,23 @@ const indentListItem = (editor: CustomEditor) => {
       const nextNodeItem = getElementNode(editor, nextNodePath);
 
       if (isListElement(nextNodeItem)) {
-        mergeWithNextList(editor, currentPath, currentNode, nextNodeItem, finalFocusPath, finalfocusOffset);
+        mergeWithNextList(
+          editor,
+          currentPath,
+          currentNode,
+          nextNodeItem,
+          finalFocusPath,
+          finalfocusOffset
+        );
       } else {
-        wrapListItem(editor, currentPath, currentNode, parentNode.type, finalFocusPath, finalfocusOffset);
+        wrapListItem(
+          editor,
+          currentPath,
+          currentNode,
+          parentNode.type,
+          finalFocusPath,
+          finalfocusOffset
+        );
       }
     } else if (currentNodeIndex === parentNode.children.length - 1) {
       // Create Path to the node before the current node
@@ -197,15 +240,29 @@ const indentListItem = (editor: CustomEditor) => {
       const prevNodeItem = getElementNode(editor, prevNodePath);
 
       if (isListElement(prevNodeItem)) {
-        mergeWithPreviousList(editor, prevNodePath, currentNode, prevNodeItem, finalFocusPath, finalfocusOffset);
+        mergeWithPreviousList(
+          editor,
+          prevNodePath,
+          currentNode,
+          prevNodeItem,
+          finalFocusPath,
+          finalfocusOffset
+        );
       } else {
-        wrapListItem(editor, currentPath, currentNode, parentNode.type, finalFocusPath, finalfocusOffset);
+        wrapListItem(
+          editor,
+          currentPath,
+          currentNode,
+          parentNode.type,
+          finalFocusPath,
+          finalfocusOffset
+        );
       }
     }
   }
 };
 
-const outdentListItem = (editor: CustomEditor) => {
+const outdentListItem = (editor: GraniteEditor) => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)
@@ -302,7 +359,7 @@ const outdentListItem = (editor: CustomEditor) => {
   }
 };
 
-const canOutdentListItem = (editor: CustomEditor): boolean => {
+const canOutdentListItem = (editor: GraniteEditor): boolean => {
   const currentPath = isInlineActive(editor)
     ? getContainerPath(editor)
     : getElementPath(editor);
@@ -312,7 +369,7 @@ const canOutdentListItem = (editor: CustomEditor): boolean => {
   return false;
 };
 
-const canIndentListItem = (editor: CustomEditor): boolean => {
+const canIndentListItem = (editor: GraniteEditor): boolean => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)

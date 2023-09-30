@@ -11,7 +11,7 @@ import {
 } from "slate-react";
 import { withHistory } from "slate-history";
 /* -------- Types -------- */
-import { CustomEditor } from "./types";
+import { GraniteEditor } from "./types";
 /* -------- Editor Components -------- */
 import BlockQuoteElement from "./elements/block-quote";
 import HeaderElement from "./elements/header";
@@ -179,7 +179,7 @@ const Editor = (props: EditorProps) => {
   const isToolbarHovering =
     !readOnly && containerRef && "hover" === toolbarMode;
 
-  const editor: CustomEditor = useMemo(
+  const editor: GraniteEditor = useMemo(
     () => withInlines(withHistory(withReact(createEditor()))),
     []
   );

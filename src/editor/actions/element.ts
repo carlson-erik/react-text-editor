@@ -2,7 +2,7 @@ import { Editor, Element, Transforms, Path } from "slate";
 import { ReactEditor } from "slate-react";
 import {
   Alignment,
-  CustomEditor,
+  GraniteEditor,
   CustomElement,
   ElementFormat,
   ElementType,
@@ -32,7 +32,7 @@ const isTextElement = (
 
 /* ------------------------ Element Node Actions ------------------------ */
 const getElementNode = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   customPath?: Path
 ): CustomElement | null => {
   let path;
@@ -71,7 +71,7 @@ const getElementNode = (
   return foundNode;
 };
 
-const getElementPath = (editor: CustomEditor): Path | null => {
+const getElementPath = (editor: GraniteEditor): Path | null => {
   if (!editor.selection) return null;
 
   const path = editor.selection.anchor.path;
@@ -92,13 +92,13 @@ const getElementPath = (editor: CustomEditor): Path | null => {
   return elementPath;
 };
 
-const getParentElementNode = (editor: CustomEditor): CustomElement | null => {
+const getParentElementNode = (editor: GraniteEditor): CustomElement | null => {
   const parentPath = getParentElementPath(editor);
   if (parentPath === null) return null;
   return getElementNode(editor, parentPath);
 };
 
-const getParentElementPath = (editor: CustomEditor): Path | null => {
+const getParentElementPath = (editor: GraniteEditor): Path | null => {
   const elementPath = getElementPath(editor);
   if (elementPath === null || elementPath.length === 1) {
     return null;
@@ -109,7 +109,7 @@ const getParentElementPath = (editor: CustomEditor): Path | null => {
 
 /* ------------------------ Element Type Actions ------------------------ */
 const isElementTypeActive = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   elementType: ElementType
 ): boolean => {
   const [match] = Editor.nodes(editor, {
@@ -119,7 +119,7 @@ const isElementTypeActive = (
 };
 
 const setElementType = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   elementType: ElementType
 ): void => {
   const selection = editor.selection;
@@ -210,7 +210,7 @@ const setElementType = (
 
 /* ------------------------ Element Format Actions ------------------------ */
 const isElementFormatActive = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   elementFormat: ElementFormat
 ) => {
   const [match] = Editor.nodes(editor, {
@@ -220,7 +220,7 @@ const isElementFormatActive = (
 };
 
 const hasElementFormatValue = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   elementFormat: ElementFormat,
   value: Alignment
 ) => {
@@ -234,7 +234,7 @@ const hasElementFormatValue = (
 };
 
 const setElementFormat = (
-  editor: CustomEditor,
+  editor: GraniteEditor,
   elementFormat: ElementFormat,
   value: Alignment
 ) => {

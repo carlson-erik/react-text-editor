@@ -4,13 +4,13 @@ import { render, screen } from "@testing-library/react";
 
 import UndoRedoSection from "../../../../src/editor/toolbar/sections/undo-redo";
 import { HANSEL_AND_GRETEL } from "../../../../stories/mocks/content";
-import { getCustomEditor } from "../../../utils";
-import { CustomEditor } from "../../../../src/editor/types";
+import { getGraniteEditor } from "../../../utils";
+import { GraniteEditor } from "../../../../src/editor/types";
 
 describe("Undo & Redo Toolbar Section ", () => {
-  let editor: CustomEditor;
+  let editor: GraniteEditor;
   beforeEach(() => {
-    editor = getCustomEditor();
+    editor = getGraniteEditor();
   });
   test("Section renders with undos and no redos", () => {
     editor.history.undos = [

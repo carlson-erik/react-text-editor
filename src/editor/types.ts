@@ -96,11 +96,11 @@ export type CustomElement =
   | LinkInlineElement;
 
 /* -------- Editor -------- */
-export type CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
+export type GraniteEditor = BaseEditor & ReactEditor & HistoryEditor;
 
 declare module "slate" {
   interface CustomTypes {
-    Editor: CustomEditor;
+    Editor: GraniteEditor;
     Element: CustomElement;
     Text: TextLeaf;
   }

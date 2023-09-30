@@ -4,14 +4,14 @@ import { getByTestId, queryByTestId, render } from "@testing-library/react";
 
 import AlignmentSection from "../../../../src/editor/toolbar/sections/alignment";
 import { LOREM_IPSUM } from "../../../../stories/mocks/content";
-import { getCustomEditor } from "../../../utils";
+import { getGraniteEditor } from "../../../utils";
 import userEvent from "@testing-library/user-event";
-import type { CustomEditor } from "../../../../src/editor/types";
+import type { GraniteEditor } from "../../../../src/editor/types";
 
 describe("Alignment Toolbar Section ", () => {
-  let editor: CustomEditor;
+  let editor: GraniteEditor;
   beforeEach(() => {
-    editor = getCustomEditor();
+    editor = getGraniteEditor();
   });
 
   test("Left Alignment is active for Left aligned text and handles change to Justify alignment", async () => {
