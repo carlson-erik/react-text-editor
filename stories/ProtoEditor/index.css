@@ -1,0 +1,11 @@
+@import url("https://use.typekit.net/neg0unw.css");
+
+.granite {
+  font-family: 'Lato';
+}
+
+html,
+body,
+#storybook-root {
+  height: 100vh;
+}

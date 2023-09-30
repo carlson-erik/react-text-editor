@@ -1,0 +1,87 @@
+{
+  "name": "granite-editor",
+  "version": "0.1.0",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "umd": "dist/granite-editor.js",
+  "umdMin": "dist/granite-editor.min.js",
+  "umdGlobals": {
+    "react": "React"
+  },
+  "scripts": {
+    "start": "storybook dev -p 4334 ",
+    "test": "jest --coverage --silent",
+    "build:rollup": "rollup -c",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "is-hotkey": "^0.2.0",
+    "is-url": "^1.2.4",
+    "react-color": "^2.19.3",
+    "react-popper": "^2.3.0",
+    "slate": "^0.94.1",
+    "slate-history": "^0.93.0",
+    "slate-react": "^0.98.3",
+    "styled-components": "^6.0.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/plugin-transform-runtime": "^7.22.15",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^8.3.4",
+    "@storybook/addon-actions": "^7.4.4",
+    "@storybook/addon-controls": "^7.4.4",
+    "@storybook/addon-essentials": "^7.4.4",
+    "@storybook/addon-links": "^7.4.4",
+    "@storybook/node-logger": "^7.4.4",
+    "@storybook/react": "^7.4.4",
+    "@storybook/react-webpack5": "^7.4.4",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/is-url": "^1.2.30",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.17",
+    "@types/react": "^17.0.38",
+    "@types/react-color": "^3.0.6",
+    "@types/react-dom": "^17.0.11",
+    "@types/styled-components": "^5.1.19",
+    "babel-jest": "^28.1.3",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
+    "jest-styled-components": "^7.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^2.79.1",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "storybook": "^7.4.4",
+    "storybook-dark-mode": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "webpack": "^5.65.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

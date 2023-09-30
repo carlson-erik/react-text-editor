@@ -1,0 +1,13 @@
+# Directories
+src/
+docs/
+stories/
+tests/
+.storybook/
+.vscode/
+
+# Config files
+babel.config.js
+jest.config.ts
+rollup.config.js
+tsconfig.json
