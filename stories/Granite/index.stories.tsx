@@ -1,18 +1,24 @@
+/* -------- 3rd Party APIs -------- */
+import React from "react";
 import styled from "styled-components";
 import { useDarkMode } from "storybook-dark-mode";
-import { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
+/* -------- Granite -------- */
+import { Granite, GraniteProps, ThemeTypes } from "../../src";
+/* -------- Mock Content -------- */
 import {
   LOREM_IPSUM,
   HANSEL_AND_GRETEL,
   LIST_EXAMPLES,
 } from "../mocks/content";
-import { Granite, GraniteProps, Theme, ThemeTypes } from "../../src/index";
+/* -------- Styles & Themes  -------- */
 import DEFAULT_THEME from "../../src/editor/theme/default";
 import "./index.css";
-import React from "react";
+import { ThemeConfiguration } from "../../src/editor/theme/types";
 
+/* -------- Styled Components -------- */
 const Container = styled.div<{
-  theme: Theme;
+  theme: ThemeConfiguration;
   themeType: ThemeTypes;
 }>`
   display: flex;
@@ -25,7 +31,10 @@ const Container = styled.div<{
       : props.theme.editor.background};
 `;
 
-const EditorContainer = styled.div<{ theme: Theme }>`
+const EditorContainer = styled.div<{
+  theme: ThemeConfiguration;
+  themeType: ThemeTypes;
+}>`
   width: 90%;
   padding: 1rem;
   margin-top: 2rem;
@@ -59,10 +68,17 @@ export default {
 
 const EditorStory: StoryFn<typeof Granite> = (args: GraniteProps) => {
   const themeType = useDarkMode() ? ThemeTypes.DARK : ThemeTypes.LIGHT;
+  const themeProps: {
+    theme: ThemeConfiguration;
+    themeType: ThemeTypes;
+  } = {
+    theme: DEFAULT_THEME[themeType],
+    themeType,
+  };
   return (
-    <Container theme={DEFAULT_THEME[themeType]} themeType={themeType}>
-      <EditorContainer theme={DEFAULT_THEME[themeType]}>
-        <Granite {...args} theme={DEFAULT_THEME} themeType={themeType} />
+    <Container {...themeProps}>
+      <EditorContainer {...themeProps}>
+        <Granite {...args} {...themeProps} theme={DEFAULT_THEME} />
       </EditorContainer>
     </Container>
   );
