@@ -1,12 +1,12 @@
 {
-  "name": "granite-editor",
+  "name": "granite-js",
   "version": "0.1.0",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
-  "umd": "dist/granite-editor.js",
-  "umdMin": "dist/granite-editor.min.js",
+  "umd": "dist/granite.js",
+  "umdMin": "dist/granite.min.js",
   "umdGlobals": {
     "react": "React"
   },
