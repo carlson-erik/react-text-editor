@@ -3,6 +3,7 @@ src/
 docs/
 stories/
 tests/
+coverage/
 .storybook/
 .vscode/
 
