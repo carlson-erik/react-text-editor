@@ -156,7 +156,7 @@ export interface EditorProps {
   readOnly: boolean;
   onChange: (content: Descendant[]) => void;
   initialContent?: Descendant[];
-  toolbarMode: "static-bottom" | "static-top" | "hover";
+  toolbarMode: "bottom" | "top" | "hover";
 }
 
 const Editor = (props: EditorProps) => {
@@ -172,10 +172,8 @@ const Editor = (props: EditorProps) => {
   );
   const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
   const { theme, type } = useContext(ThemeContext);
-  const isToolbarTop =
-    !readOnly && containerRef && "static-top" === toolbarMode;
-  const isToolbarBottom =
-    !readOnly && containerRef && "static-bottom" === toolbarMode;
+  const isToolbarTop = !readOnly && containerRef && "top" === toolbarMode;
+  const isToolbarBottom = !readOnly && containerRef && "bottom" === toolbarMode;
   const isToolbarHovering =
     !readOnly && containerRef && "hover" === toolbarMode;
 

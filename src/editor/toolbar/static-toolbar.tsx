@@ -33,8 +33,7 @@ const StaticToolbar = (props: StaticToolbarProps) => {
     "text" | "element" | "hidden" | "disabled"
   >("disabled");
   const editor = useSlate();
-  const className =
-    location === "top" ? "static-top-toolbar" : "static-bottom-toolbar";
+  const className = location === "top" ? "top-toolbar" : "bottom-toolbar";
 
   const handleOutsideClick = (event: any) => {
     if (containerRef && !containerRef.contains(event.target)) {

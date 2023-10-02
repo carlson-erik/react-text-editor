@@ -61,7 +61,7 @@ export default {
     readOnly: { control: "boolean" },
     themeType: { control: { disable: true } },
     toolbarMode: {
-      options: ["static-top", "static-bottom", "hover"],
+      options: ["top", "bottom", "hover"],
     },
   },
 } as Meta<typeof Granite>;
@@ -87,7 +87,7 @@ const EditorStory: StoryFn<typeof Granite> = (args: GraniteProps) => {
 export const Empty = EditorStory.bind({});
 Empty.args = {
   readOnly: false,
-  toolbarMode: "static-top",
+  toolbarMode: "top",
 };
 Empty.argTypes = {
   initialContent: { control: { disable: true } },
@@ -104,7 +104,7 @@ export const HanselAndGretel = EditorStory.bind({});
 HanselAndGretel.args = {
   readOnly: false,
   initialContent: HANSEL_AND_GRETEL,
-  toolbarMode: "static-top",
+  toolbarMode: "top",
 };
 
 export const ListExamples = EditorStory.bind({});

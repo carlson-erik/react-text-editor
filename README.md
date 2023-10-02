@@ -45,7 +45,7 @@ Style the toolbar as hovering or static. The static toolbar can be positioned at
 **toolbarMode**
 
 - Configures the location and style of the editor's toolbar.
-- _Values:_ "hovering", "static-top", "static-bottom"
+- _Values:_ "hovering", "top", "bottom"
 
 **theme** (optional):
 
