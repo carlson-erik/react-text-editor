@@ -1,6 +1,7 @@
 /* -------- Types -------- */
-import type { Theme as Theme } from "./editor/theme/types";
+import type { Theme } from "./editor/theme/types";
 import type { GraniteProps } from "./Granite";
+import { Descendant } from "slate";
 /* -------- Enums -------- */
 import { ThemeTypes } from "./editor/theme/types";
 /* -------- Components -------- */
@@ -8,4 +9,6 @@ import Granite from "./Granite";
 
 export { Granite, ThemeTypes };
 
-export type { GraniteProps, Theme };
+export * from "./editor/types";
+export * from "./editor/theme/types";
+export type { GraniteProps, Theme, Descendant };
