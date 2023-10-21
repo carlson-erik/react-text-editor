@@ -107,10 +107,6 @@ const Container = styled.div<{ theme: ThemeConfiguration; readOnly: boolean }>`
   }
 
   background-color: ${(props) => props.theme.editor.background};
-
-  & div[role="textbox"] {
-    padding: ${(props) => (props.readOnly ? "0" : "0.5rem")};
-  }
 `;
 
 const EMPTY_DOCUMENT: Descendant[] = [
