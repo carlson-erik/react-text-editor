@@ -152,7 +152,7 @@ export interface EditorProps {
   readOnly: boolean;
   onChange: (content: Descendant[]) => void;
   initialContent?: Descendant[];
-  toolbarMode: "bottom" | "top" | "hover";
+  toolbarMode: "bottom" | "top" | "hover" | "none";
 }
 
 const Editor = (props: EditorProps) => {

@@ -61,7 +61,7 @@ export default {
     readOnly: { control: "boolean" },
     themeType: { control: { disable: true } },
     toolbarMode: {
-      options: ["top", "bottom", "hover"],
+      options: ["top", "bottom", "hover", "none"],
     },
   },
 } as Meta<typeof Granite>;
