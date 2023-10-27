@@ -1,7 +1,10 @@
 import { Editor, Transforms, Node, Text } from "slate";
-import { GraniteEditor, TextFormat } from "../types";
+import { ElasticEditorEditor, TextFormat } from "../types";
 
-const isTextFormatActive = (editor: GraniteEditor, textFormat: TextFormat) => {
+const isTextFormatActive = (
+  editor: ElasticEditorEditor,
+  textFormat: TextFormat
+) => {
   const [match] = Editor.nodes(editor, {
     match: (n) => Text.isText(n) && n[textFormat] === true,
     mode: "all",
@@ -9,7 +12,10 @@ const isTextFormatActive = (editor: GraniteEditor, textFormat: TextFormat) => {
   return !!match;
 };
 
-const toggleTextFormat = (editor: GraniteEditor, textFormat: TextFormat) => {
+const toggleTextFormat = (
+  editor: ElasticEditorEditor,
+  textFormat: TextFormat
+) => {
   const isActive = isTextFormatActive(editor, textFormat);
   Transforms.setNodes(
     editor,
@@ -18,7 +24,7 @@ const toggleTextFormat = (editor: GraniteEditor, textFormat: TextFormat) => {
   );
 };
 
-const setTextColor = (editor: GraniteEditor, color: string) => {
+const setTextColor = (editor: ElasticEditorEditor, color: string) => {
   Transforms.setNodes(
     editor,
     { textcolor: color },
@@ -26,7 +32,7 @@ const setTextColor = (editor: GraniteEditor, color: string) => {
   );
 };
 
-const getActiveTextColor = (editor: GraniteEditor): string => {
+const getActiveTextColor = (editor: ElasticEditorEditor): string => {
   const path = editor.selection?.anchor.path;
   if (path) {
     const currLeaf = Node.leaf(editor, path);

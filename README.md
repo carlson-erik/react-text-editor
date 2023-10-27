@@ -1,6 +1,6 @@
-# Granite
+# ElasticEditor
 
-Easy-to-reuse content editor for any React project. Allowing your users to create rich content is a complex problem and Granite solves it for you. Granite allows you to easily add user generated rich content to your product. Granite generates semantic, accessible, easily styled HTML for you and allows you to focus on your business.
+Easy-to-reuse content editor for any React project. Allowing your users to create rich content is a complex problem and ElasticEditor solves it for you. ElasticEditor allows you to easily add user generated rich content to your product. ElasticEditor generates semantic, accessible, easily styled HTML for you and allows you to focus on your business.
 
 ## Features
 
@@ -31,7 +31,7 @@ Style the toolbar as hovering or static. The static toolbar can be positioned at
 
 ## Component API
 
-### Granite
+### ElasticEditor
 
 **readOnly**
 

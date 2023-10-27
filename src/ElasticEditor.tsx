@@ -6,7 +6,7 @@ import Editor, { EditorProps } from "./editor";
 /* -------- Contexts & Providers -------- */
 import { ThemeProvider } from "./editor/theme/context";
 
-export type GraniteProps = {
+export type ElasticEditorProps = {
   /** Switches editor between editing (false) and read only (true) modes. */
   readOnly: boolean;
   /** onChange function that fires whenever there's a change in the editor's content. */
@@ -20,7 +20,7 @@ export type GraniteProps = {
   themeType?: ThemeTypes;
 };
 
-const Granite = (props: GraniteProps) => {
+const ElasticEditor = (props: ElasticEditorProps) => {
   const { readOnly, initialContent, theme, themeType, toolbarMode, onChange } =
     props;
   return (
@@ -35,4 +35,4 @@ const Granite = (props: GraniteProps) => {
   );
 };
 
-export default Granite;
+export default ElasticEditor;

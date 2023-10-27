@@ -1,12 +1,12 @@
 {
-  "name": "granite-js",
+  "name": "elastic-editor",
   "version": "0.2.1",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
-  "umd": "dist/granite.js",
-  "umdMin": "dist/granite.min.js",
+  "umd": "dist/elastic-editor.js",
+  "umdMin": "dist/elastic-editor.min.js",
   "umdGlobals": {
     "react": "React"
   },

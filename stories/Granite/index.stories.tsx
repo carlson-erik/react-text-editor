@@ -3,8 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import { useDarkMode } from "storybook-dark-mode";
 import type { Meta, StoryFn } from "@storybook/react";
-/* -------- Granite -------- */
-import { Granite, GraniteProps, ThemeTypes } from "../../src";
+/* -------- ElasticEditor -------- */
+import { ElasticEditor, ElasticEditorProps, ThemeTypes } from "../../src";
 /* -------- Mock Content -------- */
 import {
   LOREM_IPSUM,
@@ -55,8 +55,8 @@ const EditorContainer = styled.div<{
 `;
 
 export default {
-  title: "Granite",
-  component: Granite,
+  title: "ElasticEditor",
+  component: ElasticEditor,
   argTypes: {
     readOnly: { control: "boolean" },
     themeType: { control: { disable: true } },
@@ -64,9 +64,11 @@ export default {
       options: ["top", "bottom", "hover", "none"],
     },
   },
-} as Meta<typeof Granite>;
+} as Meta<typeof ElasticEditor>;
 
-const EditorStory: StoryFn<typeof Granite> = (args: GraniteProps) => {
+const EditorStory: StoryFn<typeof ElasticEditor> = (
+  args: ElasticEditorProps
+) => {
   const themeType = useDarkMode() ? ThemeTypes.DARK : ThemeTypes.LIGHT;
   const themeProps: {
     theme: ThemeConfiguration;
@@ -78,7 +80,7 @@ const EditorStory: StoryFn<typeof Granite> = (args: GraniteProps) => {
   return (
     <Container {...themeProps}>
       <EditorContainer {...themeProps}>
-        <Granite {...args} {...themeProps} theme={DEFAULT_THEME} />
+        <ElasticEditor {...args} {...themeProps} theme={DEFAULT_THEME} />
       </EditorContainer>
     </Container>
   );

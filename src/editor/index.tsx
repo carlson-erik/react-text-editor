@@ -11,7 +11,7 @@ import {
 } from "slate-react";
 import { withHistory } from "slate-history";
 /* -------- Types -------- */
-import { GraniteEditor } from "./types";
+import { ElasticEditorEditor } from "./types";
 /* -------- Editor Components -------- */
 import BlockQuoteElement from "./elements/block-quote";
 import HeaderElement from "./elements/header";
@@ -173,7 +173,7 @@ const Editor = (props: EditorProps) => {
   const isToolbarHovering =
     !readOnly && containerRef && "hover" === toolbarMode;
 
-  const editor: GraniteEditor = useMemo(
+  const editor: ElasticEditorEditor = useMemo(
     () => withInlines(withHistory(withReact(createEditor()))),
     []
   );
@@ -297,7 +297,7 @@ const Editor = (props: EditorProps) => {
 
   return (
     <Container
-      className="granite"
+      className="elastic-editor"
       ref={setContainerRef}
       theme={theme[type]}
       readOnly={readOnly}
@@ -316,7 +316,7 @@ const Editor = (props: EditorProps) => {
           renderLeaf={renderLeaf}
           renderElement={renderElement}
           onKeyDown={onKeydown}
-          className="granite-content"
+          className="editor-content"
         />
         {isToolbarBottom && (
           <StaticToolbar containerRef={containerRef} location="bottom" />

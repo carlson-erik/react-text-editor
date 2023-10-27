@@ -1,14 +1,14 @@
 /* -------- Types -------- */
 import type { Theme } from "./editor/theme/types";
-import type { GraniteProps } from "./Granite";
+import type { ElasticEditorProps } from "./ElasticEditor";
 import { Descendant } from "slate";
 /* -------- Enums -------- */
 import { ThemeTypes } from "./editor/theme/types";
 /* -------- Components -------- */
-import Granite from "./Granite";
+import ElasticEditor from "./ElasticEditor";
 
-export { Granite, ThemeTypes };
+export { ElasticEditor, ThemeTypes };
 
 export * from "./editor/types";
 export * from "./editor/theme/types";
-export type { GraniteProps, Theme, Descendant };
+export type { ElasticEditorProps, Theme, Descendant };

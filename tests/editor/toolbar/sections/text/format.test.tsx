@@ -1,8 +1,8 @@
 import React from "react";
 import { Slate } from "slate-react";
-import { GraniteEditor } from "../../../../../src/editor/types";
+import { ElasticEditorEditor } from "../../../../../src/editor/types";
 import { LIST_EXAMPLES } from "../../../../../stories/mocks/content";
-import { getGraniteEditor } from "../../../../utils";
+import { getElasticEditorEditor } from "../../../../utils";
 import { getByTestId, queryByTestId, render } from "@testing-library/react";
 import TextFormatSection from "../../../../../src/editor/toolbar/sections/text/format";
 import userEvent from "@testing-library/user-event";
@@ -19,9 +19,9 @@ const mockTextRangeSelection = {
 };
 
 describe("Text Format Toolbar Section ", () => {
-  let editor: GraniteEditor;
+  let editor: ElasticEditorEditor;
   beforeEach(() => {
-    editor = getGraniteEditor();
+    editor = getElasticEditorEditor();
   });
 
   test("Selecting Text Range and clicking the Bold button will bold the text.", () => {

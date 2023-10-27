@@ -5,7 +5,7 @@ import {
   getParentElementNode,
 } from "./element";
 import {
-  GraniteEditor,
+  ElasticEditorEditor,
   ListElement,
   ListElementType,
   ListItemElement,
@@ -27,7 +27,7 @@ const isListElement = (element: Descendant | null): element is ListElement => {
 };
 
 const mergeWithPreviousList = (
-  editor: GraniteEditor,
+  editor: ElasticEditorEditor,
   listPath: Path,
   listItemNode: ListItemElement,
   listNode: ListElement,
@@ -53,7 +53,7 @@ const mergeWithPreviousList = (
 };
 
 const mergeWithNextList = (
-  editor: GraniteEditor,
+  editor: ElasticEditorEditor,
   listItemPath: Path,
   listItemNode: ListItemElement,
   listNode: ListElement,
@@ -75,7 +75,7 @@ const mergeWithNextList = (
 };
 
 const mergeTwoLists = (
-  editor: GraniteEditor,
+  editor: ElasticEditorEditor,
   currentListItem: ListItemElement,
   prevListPath: Path,
   prevList: ListElement,
@@ -103,7 +103,7 @@ const mergeTwoLists = (
 };
 
 const wrapListItem = (
-  editor: GraniteEditor,
+  editor: ElasticEditorEditor,
   path: Path,
   node: ListItemElement,
   listType: ListElementType,
@@ -120,7 +120,7 @@ const wrapListItem = (
   focusPath(editor, [...path, 0, ...finalFocusPath], finalFocusOffset);
 };
 
-const indentListItem = (editor: GraniteEditor) => {
+const indentListItem = (editor: ElasticEditorEditor) => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)
@@ -262,7 +262,7 @@ const indentListItem = (editor: GraniteEditor) => {
   }
 };
 
-const outdentListItem = (editor: GraniteEditor) => {
+const outdentListItem = (editor: ElasticEditorEditor) => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)
@@ -359,7 +359,7 @@ const outdentListItem = (editor: GraniteEditor) => {
   }
 };
 
-const canOutdentListItem = (editor: GraniteEditor): boolean => {
+const canOutdentListItem = (editor: ElasticEditorEditor): boolean => {
   const currentPath = isInlineActive(editor)
     ? getContainerPath(editor)
     : getElementPath(editor);
@@ -369,7 +369,7 @@ const canOutdentListItem = (editor: GraniteEditor): boolean => {
   return false;
 };
 
-const canIndentListItem = (editor: GraniteEditor): boolean => {
+const canIndentListItem = (editor: ElasticEditorEditor): boolean => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)

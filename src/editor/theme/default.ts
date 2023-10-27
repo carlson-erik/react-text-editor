@@ -1,7 +1,7 @@
 import { Theme } from "./types";
 
 const DEFAULT_THEME: Theme = {
-  name: "Granite",
+  name: "ElasticEditor",
   light: {
     editor: {
       background: "#FFFFFF",

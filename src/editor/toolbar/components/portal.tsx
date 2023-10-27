@@ -9,7 +9,7 @@ const Portal = (props: PortalProps) => {
   return typeof document === "object"
     ? ReactDOM.createPortal(
         children,
-        document.querySelector(".granite") || document.body
+        document.querySelector(".elastic-editor") || document.body
       )
     : null;
 };

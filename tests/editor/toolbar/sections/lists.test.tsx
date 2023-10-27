@@ -4,14 +4,14 @@ import { getByTestId, queryByTestId, render } from "@testing-library/react";
 
 import ListSection from "../../../../src/editor/toolbar/sections/lists";
 import { LIST_EXAMPLES } from "../../../../stories/mocks/content";
-import { getGraniteEditor } from "../../../utils";
+import { getElasticEditorEditor } from "../../../utils";
 import userEvent from "@testing-library/user-event";
-import type { GraniteEditor } from "../../../../src/editor/types";
+import type { ElasticEditorEditor } from "../../../../src/editor/types";
 
 describe("Lists Toolbar Section ", () => {
-  let editor: GraniteEditor;
+  let editor: ElasticEditorEditor;
   beforeEach(() => {
-    editor = getGraniteEditor();
+    editor = getElasticEditorEditor();
   });
 
   test("Ordered List Button is active for an Ordered List selection and handles changing the list to a Bulleted List", async () => {

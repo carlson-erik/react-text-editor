@@ -120,7 +120,7 @@ function configure(pkg, env, target) {
       ],
       // We need to explicitly state which modules are external, meaning that
       // they are present at runtime. In the case of non-UMD configs, this means
-      // all non-Granite packages.
+      // all non-ElasticEditor packages.
       external: (id) => {
         return !!deps.find((dep) => dep === id || id.startsWith(`${dep}/`));
       },
@@ -141,7 +141,7 @@ function configure(pkg, env, target) {
       ],
       // We need to explicitly state which modules are external, meaning that
       // they are present at runtime. In the case of non-UMD configs, this means
-      // all non-Granite packages.
+      // all non-ElasticEditor packages.
       external: (id) => {
         return !!deps.find((dep) => dep === id || id.startsWith(`${dep}/`));
       },
