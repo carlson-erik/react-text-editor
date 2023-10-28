@@ -24,13 +24,18 @@ Makes a static build of the storybook development environment to the `storybook-
 
 ## Publishing a new version to NPM
 
-1. Make sure to update `package.json` and `package-lock.json` to reflect the new version
-2. `npm run test` - Confirm the component is functioning correctly
-3. `git commit -m "Version: X.Y.Z"` - Commit changes made in step 1
-4. `npm run build:rollup` - Build the component
-5. `git tag X.Y.Z` - Create the git tag for the new release
-6. `npm publish` - Publish the new release to npm
-7. `git push` - Push new commit to repository
-8. `git push --tags` - Push new tag to repository
+1. Create a new branch off of `main`.
+2. Update `package.json` and `package-lock.json` to reflect the new version
+3. `npm run test` - Confirm the component is functioning correctly
+4. Publish version changes to `main`:
+   - Create & push a version commit in your branch: `git commit -m "Version: X.Y.Z"`
+   - Create a [Pull Request](https://github.com/carlson-erik/elastic-editor/pulls) in the repository.
+   - Have a contributer approve your PR
+   - Merge your PR into `main`
+5. Checkout & pull latest `main`
+6. `npm run build:rollup` - Build the component
+7. `git tag X.Y.Z` - Create the git tag for the new release
+8. `npm publish` - Publish the new release to npm
+9. `git push --tags` - Push new tag to repository
 
 Note: X.Y.Z version needs to follow [Semantic Versioning](https://semver.org/).
