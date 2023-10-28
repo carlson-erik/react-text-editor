@@ -1,6 +1,6 @@
 # ElasticEditor
 
-Easy-to-reuse content editor for any React project. Allowing your users to create rich content is a complex problem and ElasticEditor solves it for you. ElasticEditor allows you to easily add user generated rich content to your product. ElasticEditor generates semantic, accessible, easily styled HTML for you and allows you to focus on your business.
+Easy-to-reuse content editor for any React project. Allowing your users to create rich content is a hard problem and ElasticEditor solves it for you. ElasticEditor allows you to easily add user generated rich content to your product. ElasticEditor generates semantic, accessible, easily styled HTML for you and allows you to focus on your business.
 
 ## Features
 
@@ -21,13 +21,17 @@ Allows users to format text in the following ways:
 - Text Alignment (Left, Center, Right and Justify)
 - Text Color
 
+### Undo/Redo
+
+Allows users to easily edit their work without worry by undoing/redoing recent changes.
+
 ### Themes (Light & Dark)
 
 Allows users to theme their rich content in both Light and Dark Themes. This can be controlled or automatic.
 
 ### Toolbar Modes
 
-Style the toolbar as hovering or static. The static toolbar can be positioned at the top or bottom of the editor.
+Style the toolbar as hovering above the content, or a toolbar positioned the top/bottom of the editor.
 
 ## Component API
 
