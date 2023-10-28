@@ -1,9 +1,8 @@
-import { BaseEditor, BaseSelection, Descendant } from "slate";
+import { BaseEditor } from "slate";
 import { ReactEditor } from "slate-react";
 import { HistoryEditor } from "slate-history";
 
 /* -------- Element Types -------- */
-
 export type HeaderElementType =
   | "header-one"
   | "header-two"
@@ -25,7 +24,6 @@ export type ElementType =
   | InlineElementType;
 
 /* -------- Formats -------- */
-
 export type Alignment = "left" | "right" | "center" | "justify";
 
 export type ElementFormat = "align";

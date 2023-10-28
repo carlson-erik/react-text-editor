@@ -1,10 +1,16 @@
 /* -------- 3rd Party APIs -------- */
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDarkMode } from "storybook-dark-mode";
 import type { Meta, StoryFn } from "@storybook/react";
 /* -------- ElasticEditor -------- */
-import { ElasticEditor, ElasticEditorProps, ThemeTypes } from "../../src";
+import {
+  ElasticElement,
+  ElasticEditor,
+  ElasticEditorProps,
+  ThemeTypes,
+} from "../../src";
+import Button from "../../src/editor/toolbar/components/button";
 /* -------- Mock Content -------- */
 import {
   LOREM_IPSUM,
@@ -15,6 +21,10 @@ import {
 import DEFAULT_THEME from "../../src/editor/theme/default";
 import "./index.css";
 import { ThemeConfiguration } from "../../src/editor/theme/types";
+import { serializeToPlaintext } from "../../src/serializers/plaintext";
+import { serializeToHTML } from "../../src/serializers/html";
+import { ThemeProvider } from "../../src/editor/theme/context";
+import { serializeToMarkdown } from "../../src/serializers/markdown";
 
 /* -------- Styled Components -------- */
 const Container = styled.div<{
@@ -54,6 +64,13 @@ const EditorContainer = styled.div<{
   }
 `;
 
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 1rem 0 1rem 0;
+  gap: 1rem;
+`;
+
 export default {
   title: "ElasticEditor",
   component: ElasticEditor,
@@ -66,9 +83,20 @@ export default {
   },
 } as Meta<typeof ElasticEditor>;
 
+const EMPTY_DOCUMENT: ElasticElement[] = [
+  {
+    type: "paragraph",
+    align: "left",
+    children: [{ text: "" }],
+  },
+];
+
 const EditorStory: StoryFn<typeof ElasticEditor> = (
   args: ElasticEditorProps
 ) => {
+  const [editorContent, setEditorContent] = useState<ElasticElement[]>(
+    args.initialContent || EMPTY_DOCUMENT
+  );
   const themeType = useDarkMode() ? ThemeTypes.DARK : ThemeTypes.LIGHT;
   const themeProps: {
     theme: ThemeConfiguration;
@@ -80,7 +108,39 @@ const EditorStory: StoryFn<typeof ElasticEditor> = (
   return (
     <Container {...themeProps}>
       <EditorContainer {...themeProps}>
-        <ElasticEditor {...args} {...themeProps} theme={DEFAULT_THEME} />
+        <ThemeProvider theme={DEFAULT_THEME} type={themeType}>
+          <ButtonContainer>
+            <Button onClick={() => console.log(editorContent)} primary>
+              ElasticEditor
+            </Button>
+            <Button
+              onClick={() => console.log(serializeToPlaintext(editorContent))}
+              primary
+            >
+              Plaintext
+            </Button>
+            <Button
+              onClick={() => console.log(serializeToMarkdown(editorContent))}
+              primary
+            >
+              Markdown
+            </Button>
+            <Button
+              onClick={() => console.log(serializeToHTML(editorContent))}
+              primary
+            >
+              HTML
+            </Button>
+          </ButtonContainer>
+        </ThemeProvider>
+        <ElasticEditor
+          {...args}
+          {...themeProps}
+          theme={DEFAULT_THEME}
+          onChange={(newContent) =>
+            setEditorContent(newContent as ElasticElement[])
+          }
+        />
       </EditorContainer>
     </Container>
   );
