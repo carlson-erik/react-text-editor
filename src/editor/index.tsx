@@ -11,7 +11,7 @@ import {
 } from "slate-react";
 import { withHistory } from "slate-history";
 /* -------- Types -------- */
-import { ElasticEditor } from "./types";
+import { ElasticEditor, ElasticElement } from "./types";
 /* -------- Editor Components -------- */
 import BlockQuoteElement from "./elements/block-quote";
 import HeaderElement from "./elements/header";
@@ -150,8 +150,8 @@ const renderLeaf = (props: RenderLeafProps) => {
 
 export interface EditorProps {
   readOnly: boolean;
-  onChange: (content: Descendant[]) => void;
-  initialContent?: Descendant[];
+  onChange: (content: ElasticElement[]) => void;
+  initialContent?: ElasticElement[];
   toolbarMode: "bottom" | "top" | "hover" | "none";
 }
 
@@ -185,7 +185,7 @@ const Editor = (props: EditorProps) => {
      */
     if (value !== prevContent.current) {
       prevContent.current = value;
-      onChangeProp(value);
+      onChangeProp(value as ElasticElement[]);
     }
     /**
      * Updating internal state for safety.
