@@ -17,7 +17,7 @@ import {
 import Color from "../../icons/color";
 import styled from "styled-components";
 import { ThemeConfiguration } from "../../../theme/types";
-import { ElasticEditorEditor, CustomElement } from "../../../types";
+import { ElasticEditor, ElasticElement } from "../../../types";
 import Button from "../../components/button";
 import { isLinkActive } from "../../../actions";
 
@@ -75,13 +75,10 @@ interface ColorConfigOverlayProps {
   targetRef: HTMLElement;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
-  currentNode: CustomElement;
+  currentNode: ElasticElement;
 }
 
-const getCurrentColor = (
-  editor: ElasticEditorEditor,
-  primaryTextColor: string
-) => {
+const getCurrentColor = (editor: ElasticEditor, primaryTextColor: string) => {
   const activeColor = getActiveTextColor(editor);
   return activeColor === "PRIMARY" ? primaryTextColor : activeColor;
 };

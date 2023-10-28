@@ -3,15 +3,15 @@ import React from "react";
 import Editor from "../../src/editor";
 
 import { render, queryByTestId } from "@testing-library/react";
-import type { ElasticEditorEditor } from "../../src/editor/types";
-import { getElasticEditorEditor } from "../utils";
+import type { ElasticEditor } from "../../src/editor/types";
+import { getElasticEditor } from "../utils";
 
 // import { LOREM_IPSUM } from "../../stories/mocks/content";
 
 describe("Editor - Toolbar Modes ", () => {
-  let editor: ElasticEditorEditor;
+  let editor: ElasticEditor;
   beforeEach(() => {
-    editor = getElasticEditorEditor();
+    editor = getElasticEditor();
   });
 
   test("Hovering Toolbar is configurable and works", async () => {

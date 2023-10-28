@@ -5,7 +5,7 @@ import {
   getParentElementNode,
 } from "./element";
 import {
-  ElasticEditorEditor,
+  ElasticEditor,
   ListElement,
   ListElementType,
   ListItemElement,
@@ -27,7 +27,7 @@ const isListElement = (element: Descendant | null): element is ListElement => {
 };
 
 const mergeWithPreviousList = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   listPath: Path,
   listItemNode: ListItemElement,
   listNode: ListElement,
@@ -53,7 +53,7 @@ const mergeWithPreviousList = (
 };
 
 const mergeWithNextList = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   listItemPath: Path,
   listItemNode: ListItemElement,
   listNode: ListElement,
@@ -75,7 +75,7 @@ const mergeWithNextList = (
 };
 
 const mergeTwoLists = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   currentListItem: ListItemElement,
   prevListPath: Path,
   prevList: ListElement,
@@ -103,7 +103,7 @@ const mergeTwoLists = (
 };
 
 const wrapListItem = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   path: Path,
   node: ListItemElement,
   listType: ListElementType,
@@ -120,7 +120,7 @@ const wrapListItem = (
   focusPath(editor, [...path, 0, ...finalFocusPath], finalFocusOffset);
 };
 
-const indentListItem = (editor: ElasticEditorEditor) => {
+const indentListItem = (editor: ElasticEditor) => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)
@@ -262,7 +262,7 @@ const indentListItem = (editor: ElasticEditorEditor) => {
   }
 };
 
-const outdentListItem = (editor: ElasticEditorEditor) => {
+const outdentListItem = (editor: ElasticEditor) => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)
@@ -359,7 +359,7 @@ const outdentListItem = (editor: ElasticEditorEditor) => {
   }
 };
 
-const canOutdentListItem = (editor: ElasticEditorEditor): boolean => {
+const canOutdentListItem = (editor: ElasticEditor): boolean => {
   const currentPath = isInlineActive(editor)
     ? getContainerPath(editor)
     : getElementPath(editor);
@@ -369,7 +369,7 @@ const canOutdentListItem = (editor: ElasticEditorEditor): boolean => {
   return false;
 };
 
-const canIndentListItem = (editor: ElasticEditorEditor): boolean => {
+const canIndentListItem = (editor: ElasticEditor): boolean => {
   const activeInline = isInlineActive(editor);
   const currentPath = activeInline
     ? getContainerPath(editor)

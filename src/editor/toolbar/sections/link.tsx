@@ -10,7 +10,7 @@ import Link from "../icons/link";
 /* -------- Actions & Types-------- */
 import styled from "styled-components";
 import Input from "../components/input";
-import { CustomElement, LinkInlineElement } from "../../types";
+import { ElasticElement, LinkInlineElement } from "../../types";
 import { insertLink, isLinkActive, updateLink } from "../../actions";
 import { getElementNode } from "../../actions";
 import isUrl from "is-url";
@@ -72,10 +72,10 @@ interface LinkConfigOverlayProps {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
   editingMode: "edit" | "new";
-  currentNode: CustomElement;
+  currentNode: ElasticElement;
 }
 
-const isLinkElement = (node: CustomElement): node is LinkInlineElement => {
+const isLinkElement = (node: ElasticElement): node is LinkInlineElement => {
   return (
     node.type === "link" &&
     node?.children.length > 0 &&
@@ -83,11 +83,11 @@ const isLinkElement = (node: CustomElement): node is LinkInlineElement => {
   );
 };
 
-const getInitialURL = (node: CustomElement): string => {
+const getInitialURL = (node: ElasticElement): string => {
   return isLinkElement(node) ? node.url : "";
 };
 
-const getInitialText = (node: CustomElement): string => {
+const getInitialText = (node: ElasticElement): string => {
   return isLinkElement(node) &&
     node?.children.length > 0 &&
     "text" in node.children[0]

@@ -3,10 +3,10 @@ import { withHistory } from "slate-history";
 import { withReact } from "slate-react";
 
 import { withInlines } from "../src/editor/actions";
-import { ElasticEditorEditor } from "../src/editor/types";
+import { ElasticEditor } from "../src/editor/types";
 
-const getElasticEditorEditor = (): ElasticEditorEditor => {
+const getElasticEditor = (): ElasticEditor => {
   return withInlines(withHistory(withReact(createEditor())));
 };
 
-export { getElasticEditorEditor };
+export { getElasticEditor };

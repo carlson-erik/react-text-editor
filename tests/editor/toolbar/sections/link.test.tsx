@@ -5,13 +5,13 @@ import userEvent from "@testing-library/user-event";
 
 import LinkSection from "../../../../src/editor/toolbar/sections/link";
 import { LIST_EXAMPLES } from "../../../../stories/mocks/content";
-import { getElasticEditorEditor } from "../../../utils";
-import type { ElasticEditorEditor } from "../../../../src/editor/types";
+import { getElasticEditor } from "../../../utils";
+import type { ElasticEditor } from "../../../../src/editor/types";
 
 describe("Link Toolbar Section & Link Overlay", () => {
-  let editor: ElasticEditorEditor;
+  let editor: ElasticEditor;
   beforeEach(() => {
-    editor = getElasticEditorEditor();
+    editor = getElasticEditor();
   });
 
   test("Link Button correctly handles when an edtior selection is a NOT link", async () => {

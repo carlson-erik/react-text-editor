@@ -2,8 +2,8 @@ import { Editor, Element, Transforms, Path } from "slate";
 import { ReactEditor } from "slate-react";
 import {
   Alignment,
-  ElasticEditorEditor,
-  CustomElement,
+  ElasticEditor,
+  ElasticElement,
   ElementFormat,
   ElementType,
   ListElement,
@@ -25,16 +25,16 @@ import {
 } from "./";
 
 const isTextElement = (
-  element: CustomElement | null
+  element: ElasticElement | null
 ): element is TextElement => {
   return element && isTextElementType(element.type) ? true : false;
 };
 
 /* ------------------------ Element Node Actions ------------------------ */
 const getElementNode = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   customPath?: Path
-): CustomElement | null => {
+): ElasticElement | null => {
   let path;
   if (customPath) {
     path = customPath;
@@ -71,7 +71,7 @@ const getElementNode = (
   return foundNode;
 };
 
-const getElementPath = (editor: ElasticEditorEditor): Path | null => {
+const getElementPath = (editor: ElasticEditor): Path | null => {
   if (!editor.selection) return null;
 
   const path = editor.selection.anchor.path;
@@ -92,15 +92,13 @@ const getElementPath = (editor: ElasticEditorEditor): Path | null => {
   return elementPath;
 };
 
-const getParentElementNode = (
-  editor: ElasticEditorEditor
-): CustomElement | null => {
+const getParentElementNode = (editor: ElasticEditor): ElasticElement | null => {
   const parentPath = getParentElementPath(editor);
   if (parentPath === null) return null;
   return getElementNode(editor, parentPath);
 };
 
-const getParentElementPath = (editor: ElasticEditorEditor): Path | null => {
+const getParentElementPath = (editor: ElasticEditor): Path | null => {
   const elementPath = getElementPath(editor);
   if (elementPath === null || elementPath.length === 1) {
     return null;
@@ -111,7 +109,7 @@ const getParentElementPath = (editor: ElasticEditorEditor): Path | null => {
 
 /* ------------------------ Element Type Actions ------------------------ */
 const isElementTypeActive = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   elementType: ElementType
 ): boolean => {
   const [match] = Editor.nodes(editor, {
@@ -121,7 +119,7 @@ const isElementTypeActive = (
 };
 
 const setElementType = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   elementType: ElementType
 ): void => {
   const selection = editor.selection;
@@ -212,7 +210,7 @@ const setElementType = (
 
 /* ------------------------ Element Format Actions ------------------------ */
 const isElementFormatActive = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   elementFormat: ElementFormat
 ) => {
   const [match] = Editor.nodes(editor, {
@@ -222,7 +220,7 @@ const isElementFormatActive = (
 };
 
 const hasElementFormatValue = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   elementFormat: ElementFormat,
   value: Alignment
 ) => {
@@ -236,7 +234,7 @@ const hasElementFormatValue = (
 };
 
 const setElementFormat = (
-  editor: ElasticEditorEditor,
+  editor: ElasticEditor,
   elementFormat: ElementFormat,
   value: Alignment
 ) => {

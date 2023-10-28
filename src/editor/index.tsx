@@ -11,7 +11,7 @@ import {
 } from "slate-react";
 import { withHistory } from "slate-history";
 /* -------- Types -------- */
-import { ElasticEditorEditor } from "./types";
+import { ElasticEditor } from "./types";
 /* -------- Editor Components -------- */
 import BlockQuoteElement from "./elements/block-quote";
 import HeaderElement from "./elements/header";
@@ -173,7 +173,7 @@ const Editor = (props: EditorProps) => {
   const isToolbarHovering =
     !readOnly && containerRef && "hover" === toolbarMode;
 
-  const editor: ElasticEditorEditor = useMemo(
+  const editor: ElasticEditor = useMemo(
     () => withInlines(withHistory(withReact(createEditor()))),
     []
   );
