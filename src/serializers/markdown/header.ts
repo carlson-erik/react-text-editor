@@ -1,5 +1,5 @@
-import { Node } from "slate";
 import { ElasticElement, HeaderElement } from "../../editor/types";
+import { serializeInlineText } from "./inline";
 
 const isHeaderElement = (node: ElasticElement): node is HeaderElement => {
   return [
@@ -14,19 +14,22 @@ const isHeaderElement = (node: ElasticElement): node is HeaderElement => {
 
 const serializeHeader = (node: HeaderElement): string => {
   const { type } = node;
+  const headerText = node.children
+    .map((textNode) => serializeInlineText(textNode))
+    .join("");
   switch (type) {
     case "header-one":
-      return `# ${Node.string(node)}`;
+      return `# ${headerText}`;
     case "header-two":
-      return `## ${Node.string(node)}`;
+      return `## ${headerText}`;
     case "header-three":
-      return `### ${Node.string(node)}`;
+      return `### ${headerText}`;
     case "header-four":
-      return `#### ${Node.string(node)}`;
+      return `#### ${headerText}`;
     case "header-five":
-      return `##### ${Node.string(node)}`;
+      return `##### ${headerText}`;
     case "header-six":
-      return `###### ${Node.string(node)}`;
+      return `###### ${headerText}`;
   }
 };
 

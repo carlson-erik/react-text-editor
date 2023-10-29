@@ -6,8 +6,6 @@ import { render, queryByTestId } from "@testing-library/react";
 import type { ElasticEditor } from "../../src/editor/types";
 import { getElasticEditor } from "../utils";
 
-// import { LOREM_IPSUM } from "../../stories/mocks/content";
-
 describe("Editor - Toolbar Modes ", () => {
   let editor: ElasticEditor;
   beforeEach(() => {

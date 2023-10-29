@@ -16,6 +16,7 @@ import {
   LOREM_IPSUM,
   HANSEL_AND_GRETEL,
   LIST_EXAMPLES,
+  REACT_ARTICLE,
 } from "../mocks/content";
 /* -------- Styles & Themes  -------- */
 import DEFAULT_THEME from "../../src/editor/theme/default";
@@ -25,7 +26,7 @@ import { serializeToPlaintext } from "../../src/serializers/plaintext";
 import { serializeToHTML } from "../../src/serializers/html";
 import { ThemeProvider } from "../../src/editor/theme/context";
 import { serializeToMarkdown } from "../../src/serializers/markdown";
-
+import { createAndDownloadFile, createFileName } from "./utils";
 /* -------- Styled Components -------- */
 const Container = styled.div<{
   theme: ThemeConfiguration;
@@ -91,9 +92,12 @@ const EMPTY_DOCUMENT: ElasticElement[] = [
   },
 ];
 
-const EditorStory: StoryFn<typeof ElasticEditor> = (
-  args: ElasticEditorProps
-) => {
+interface EditoryStoryProps extends ElasticEditorProps {
+  fileName: string;
+}
+
+const EditorStory: StoryFn<EditoryStoryProps> = (args: EditoryStoryProps) => {
+  const fileName = args.fileName;
   const [editorContent, setEditorContent] = useState<ElasticElement[]>(
     args.initialContent || EMPTY_DOCUMENT
   );
@@ -110,23 +114,50 @@ const EditorStory: StoryFn<typeof ElasticEditor> = (
       <EditorContainer {...themeProps}>
         <ThemeProvider theme={DEFAULT_THEME} type={themeType}>
           <ButtonContainer>
-            <Button onClick={() => console.log(editorContent)} primary>
+            <Button
+              onClick={() => {
+                const elasticElementsText = JSON.stringify(editorContent);
+                createAndDownloadFile(
+                  createFileName(fileName, "json"),
+                  elasticElementsText
+                );
+              }}
+              primary
+            >
               ElasticEditor
             </Button>
             <Button
-              onClick={() => console.log(serializeToPlaintext(editorContent))}
+              onClick={() => {
+                const plainText = serializeToPlaintext(editorContent);
+                createAndDownloadFile(
+                  createFileName(fileName, "txt"),
+                  plainText
+                );
+              }}
               primary
             >
               Plaintext
             </Button>
             <Button
-              onClick={() => console.log(serializeToMarkdown(editorContent))}
+              onClick={() => {
+                const markdownText = serializeToMarkdown(editorContent);
+                createAndDownloadFile(
+                  createFileName(fileName, "md"),
+                  markdownText
+                );
+              }}
               primary
             >
               Markdown
             </Button>
             <Button
-              onClick={() => console.log(serializeToHTML(editorContent))}
+              onClick={() => {
+                const htmlText = serializeToHTML(editorContent);
+                createAndDownloadFile(
+                  createFileName(fileName, "html"),
+                  htmlText
+                );
+              }}
               primary
             >
               HTML
@@ -150,6 +181,7 @@ export const Empty = EditorStory.bind({});
 Empty.args = {
   readOnly: false,
   toolbarMode: "top",
+  fileName: "Empty",
 };
 Empty.argTypes = {
   initialContent: { control: { disable: true } },
@@ -159,7 +191,8 @@ export const LoremIpsum = EditorStory.bind({});
 LoremIpsum.args = {
   readOnly: false,
   initialContent: LOREM_IPSUM,
-  toolbarMode: "hover",
+  toolbarMode: "top",
+  fileName: "Lorem Ipsum",
 };
 
 export const HanselAndGretel = EditorStory.bind({});
@@ -167,11 +200,21 @@ HanselAndGretel.args = {
   readOnly: false,
   initialContent: HANSEL_AND_GRETEL,
   toolbarMode: "top",
+  fileName: "Hansel And Gretel",
 };
 
 export const ListExamples = EditorStory.bind({});
 ListExamples.args = {
   readOnly: false,
   initialContent: LIST_EXAMPLES,
-  toolbarMode: "hover",
+  toolbarMode: "top",
+  fileName: "List Examples",
+};
+
+export const ArticleExample = EditorStory.bind({});
+ArticleExample.args = {
+  readOnly: false,
+  initialContent: REACT_ARTICLE,
+  toolbarMode: "top",
+  fileName: "React Article",
 };
