@@ -18,15 +18,15 @@ import {
   LIST_EXAMPLES,
   REACT_ARTICLE,
 } from "../mocks/content";
+/* -------- Serializers & Utils -------- */
+import { serializeToPlaintext } from "../../src/serializers/plaintext";
+import { serializeToMarkdown } from "../../src/serializers/markdown";
+import { createAndDownloadFile, createFileName } from "./utils";
 /* -------- Styles & Themes  -------- */
 import DEFAULT_THEME from "../../src/editor/theme/default";
 import "./index.css";
 import { ThemeConfiguration } from "../../src/editor/theme/types";
-import { serializeToPlaintext } from "../../src/serializers/plaintext";
-import { serializeToHTML } from "../../src/serializers/html";
 import { ThemeProvider } from "../../src/editor/theme/context";
-import { serializeToMarkdown } from "../../src/serializers/markdown";
-import { createAndDownloadFile, createFileName } from "./utils";
 /* -------- Styled Components -------- */
 const Container = styled.div<{
   theme: ThemeConfiguration;
@@ -149,18 +149,6 @@ const EditorStory: StoryFn<EditoryStoryProps> = (args: EditoryStoryProps) => {
               primary
             >
               Markdown
-            </Button>
-            <Button
-              onClick={() => {
-                const htmlText = serializeToHTML(editorContent);
-                createAndDownloadFile(
-                  createFileName(fileName, "html"),
-                  htmlText
-                );
-              }}
-              primary
-            >
-              HTML
             </Button>
           </ButtonContainer>
         </ThemeProvider>
