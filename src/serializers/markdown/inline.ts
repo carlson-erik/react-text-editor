@@ -6,6 +6,14 @@ import {
   TextLeaf,
 } from "../../editor/types";
 
+const isInlineElement = (
+  node: ElasticElement | TextLeaf
+): node is InlineElement => {
+  return (
+    ("type" in node && node.type === "link" && !!node.url) || "text" in node
+  );
+};
+
 const isLinkInlineElement = (
   node: ElasticElement | TextLeaf
 ): node is LinkInlineElement => {
@@ -40,4 +48,9 @@ const serializeInlineText = (
   return inlineText;
 };
 
-export { isLinkInlineElement, serializeLinkInlineElement, serializeInlineText };
+export {
+  isLinkInlineElement,
+  serializeLinkInlineElement,
+  serializeInlineText,
+  isInlineElement,
+};
