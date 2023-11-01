@@ -1,15 +1,12 @@
-import { Node } from "slate";
 import { ElasticElement, InlineElement, ListElement } from "../../editor/types";
 import { getOrderedIndex } from "../plaintext/list";
-import {
-  isLinkInlineElement,
-  serializeInlineText,
-  serializeLinkInlineElement,
-} from "./inline";
+import { serializeInlineText } from "./inline";
 
 const isListElement = (node: ElasticElement): node is ListElement => {
   return ["ordered-list", "bulleted-list"].includes(node.type);
 };
+
+export const LIST_PADDING = "   ";
 
 const getListItemText = (
   parentElement: ElasticElement,
@@ -20,10 +17,9 @@ const getListItemText = (
   const itemText = element.children
     .map((textNode) => serializeInlineText(textNode as InlineElement, true))
     .join("");
-  const padding = "   ";
   return parentElement.type === "ordered-list"
-    ? `${padding.repeat(depth)}${listIndex + 1}. ${itemText}`
-    : `${padding.repeat(depth)}- ${itemText}`;
+    ? `${LIST_PADDING.repeat(depth)}${listIndex + 1}. ${itemText}`
+    : `${LIST_PADDING.repeat(depth)}- ${itemText}`;
 };
 
 const serializeList = (node: ListElement, depth: number): string => {
@@ -43,4 +39,4 @@ const serializeList = (node: ListElement, depth: number): string => {
   return markdown.join("\n");
 };
 
-export { serializeList, isListElement };
+export { serializeList, isListElement, getListItemText };

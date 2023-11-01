@@ -6,7 +6,7 @@ import { blockQuote, paragraph } from "./constants";
 
 describe("Markdown ParagraphElement serializer & utils", () => {
   test("serializeParagraph", () => {
-    // Assert paragraphs get a new line character
+    // Assert ParagraphElements serialize and they get a new line character
     expect(serializeParagraph(paragraph)).toEqual(`Simple example text\n`);
     // Assert empty paragraphs don't get a new line character
     expect(
@@ -16,7 +16,7 @@ describe("Markdown ParagraphElement serializer & utils", () => {
         children: [{ text: "" }],
       })
     ).toEqual("");
-    // Assert inline styles work within paragraphs
+    // Assert inline styles work within valid ParagraphElements
     const inlineParagraphText = serializeParagraph({
       type: "paragraph",
       align: "left",
@@ -30,8 +30,10 @@ describe("Markdown ParagraphElement serializer & utils", () => {
   });
 
   test("isParagraphElement", () => {
+    // Assert a ParagraphElement is a valid ParagraphElement
     const validParagraph = isParagraphElement(paragraph);
     expect(validParagraph).toBe(true);
+    // Assert a BlockQuoteElement is an invalid ParagraphElement
     const invalidParagraph = isParagraphElement(blockQuote);
     expect(invalidParagraph).toBe(false);
   });

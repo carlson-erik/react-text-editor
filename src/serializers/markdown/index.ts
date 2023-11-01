@@ -1,3 +1,4 @@
+import { Node } from "slate";
 import { ElasticElement } from "../../editor/types";
 import { isBlockQuoteElement, serializeBlockQuote } from "./blockquote";
 import { isHeaderElement, serializeHeader } from "./header";
@@ -21,7 +22,7 @@ const transformNode = (node: ElasticElement): string => {
   if (isListElement(node)) {
     return serializeList(node, 0);
   }
-  return `${node.type} ELEMENT NOT IMEPLEMENTED`;
+  return Node.string(node);
 };
 
 export { serializeToMarkdown };

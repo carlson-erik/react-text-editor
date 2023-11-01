@@ -8,15 +8,15 @@ import { blockQuote, linkInline } from "./constants";
 
 describe("Markdown LinkInlineElement serializer & utils", () => {
   test("isLinkInlineElement", async () => {
-    // Assert with a LinkInlineElement
+    // Assert a LinkInlineElement is a valid LinkInlineElement
     const validLinkInlineElement = isLinkInlineElement(linkInline);
     expect(validLinkInlineElement).toBe(true);
-    // Assert with a TextLeaf
+    // Assert a Textleaf is an invalid LinkInlineElement
     const invalidTextLeaf = isLinkInlineElement({
       text: "Simple example text",
     });
     expect(invalidTextLeaf).toBe(false);
-    // Assert with a BlockQuoteElement
+    // Assert a BlockQuoteElement is a valid LinkInlineElement
     const invalidElement = isLinkInlineElement(blockQuote);
     expect(invalidElement).toBe(false);
   });
@@ -25,15 +25,15 @@ describe("Markdown LinkInlineElement serializer & utils", () => {
 
 describe("Markdown InlineElement serializer & utils", () => {
   test("isInlineElement", async () => {
-    // Assert with a TextLeaf
+    // Assert a TextLeaf is a valid InlineElement
     const validTextLeaf = isInlineElement({
       text: "Simple example text",
     });
     expect(validTextLeaf).toBe(true);
-    // Assert with a LinkInlineElement
+    // Assert a LinkInlineElement is a valid InlineElement
     const validLinkInlineElement = isInlineElement(linkInline);
     expect(validLinkInlineElement).toBe(true);
-    // Assert with a BlockQuoteElement
+    // Assert a BlockQuoteElement is an invalid InlineElement
     const invalidElement = isInlineElement(blockQuote);
     expect(invalidElement).toBe(false);
   });
@@ -44,36 +44,36 @@ describe("Markdown InlineElement serializer & utils", () => {
         text: "Text",
         bold: true,
       } as TextLeaf,
-      title: "Bold text",
       expectedValue: "**Text**",
       inlineStyleSupport: true,
+      title: "Bold text serialization is supported",
     },
     {
       element: {
         text: "Text",
         italics: true,
       } as TextLeaf,
-      title: "Italics text",
       expectedValue: "_Text_",
       inlineStyleSupport: true,
+      title: "Italics text serialization is supported.",
     },
     {
       element: {
         text: "Text",
         underline: true,
       } as TextLeaf,
-      title: "MARKDOWN NOT SUPPORTED: Underline text",
       expectedValue: "Text",
       inlineStyleSupport: true,
+      title: "Underline text serialization is NOT supported (by Markdown).",
     },
     {
       element: {
         text: "Text",
         strikethrough: true,
       } as TextLeaf,
-      title: "NOT SUPPORTED: Strikethrough text",
       expectedValue: "Text",
       inlineStyleSupport: true,
+      title: "Strikethrough text serialization is NOT supported (by Markdown).",
     },
     {
       element: {
@@ -81,8 +81,8 @@ describe("Markdown InlineElement serializer & utils", () => {
         url: "https://google.com",
         children: [{ text: "Text" }],
       } as LinkInlineElement,
-      title: "LinkInlineElement",
       expectedValue: "[Text](https://google.com)",
+      title: "LinkInlineElement serialization is supported.",
     },
     {
       element: {
@@ -90,15 +90,16 @@ describe("Markdown InlineElement serializer & utils", () => {
         italics: true,
         bold: true,
       } as TextLeaf,
-      title: "inlineStyleSupport set to false disables styles",
       expectedValue: "Text",
       inlineStyleSupport: false,
+      title:
+        "inlineStyleSupport set to false disables inline style serialization",
     },
   ];
 
   serializeInlineTextTestCases.map(
     ({ element, title, expectedValue, inlineStyleSupport }) =>
-      test(`serializeInlineText ${title}`, async () => {
+      test(`serializeInlineText: ${title}`, async () => {
         expect(serializeInlineText(element, inlineStyleSupport)).toBe(
           expectedValue
         );

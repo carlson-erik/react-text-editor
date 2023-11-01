@@ -4,8 +4,8 @@ import {
 } from "../../../src/serializers/markdown/blockquote";
 
 describe("Markdown BlockQuoteElement serializer & utils", () => {
-  // Assert BlockQuoteElements serialize correctly
   test("serializeBlockQuote", async () => {
+    // Assert BlockQuoteElements serialize correctly
     expect(
       serializeBlockQuote({
         type: "block-quote",
@@ -31,6 +31,7 @@ describe("Markdown BlockQuoteElement serializer & utils", () => {
   });
 
   test("isBlockQuoteElement", async () => {
+    // Assert BlockQuoteElement is a valid BlockQuoteElement
     const validBlockQuote = isBlockQuoteElement({
       type: "block-quote",
       children: [
@@ -40,6 +41,7 @@ describe("Markdown BlockQuoteElement serializer & utils", () => {
       ],
     });
     expect(validBlockQuote).toBe(true);
+    // Assert HeaderElement is an invalid BlockQuoteElement
     const invalidBlockQuote = isBlockQuoteElement({
       type: "header-one",
       align: "left",

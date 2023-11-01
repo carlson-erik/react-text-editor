@@ -1,4 +1,4 @@
-import { BlockQuoteElement, HeaderElement } from "../../../src";
+import { HeaderElement } from "../../../src";
 import {
   serializeHeader,
   isHeaderElement,
@@ -17,33 +17,33 @@ describe("Markdown HeaderElement serializer & utils", () => {
   const serializeHeaderTestCases = [
     {
       element: headerOne,
-      title: "Header One element",
       expectedValue: "# Simple example text",
+      title: "Header One element serializes correctly",
     },
     {
       element: headerTwo,
-      title: "Header Two element",
       expectedValue: "## Simple example text",
+      title: "Header Two element serializes correctly",
     },
     {
       element: headerThree,
-      title: "Header Three element",
       expectedValue: "### Simple example text",
+      title: "Header Three element serializes correctly",
     },
     {
       element: headerFour,
-      title: "Header Four element",
       expectedValue: "#### Simple example text",
+      title: "Header Four element serializes correctly",
     },
     {
       element: headerFive,
-      title: "Header Five element",
       expectedValue: "##### Simple example text",
+      title: "Header Five element serializes correctly",
     },
     {
       element: headerSix,
-      title: "Header Six element",
       expectedValue: "###### Simple example text",
+      title: "Header Six element serializes correctly",
     },
     {
       element: {
@@ -61,27 +61,51 @@ describe("Markdown HeaderElement serializer & utils", () => {
   ];
 
   serializeHeaderTestCases.map(({ element, title, expectedValue }) =>
-    test(`serializeHeader ${title}`, async () => {
+    test(`serializeHeader: ${title}`, async () => {
       expect(serializeHeader(element)).toBe(expectedValue);
     })
   );
 
   const isHeaderElementTestCases = [
-    { element: headerOne, title: "Header One element", expectedValue: true },
-    { element: headerTwo, title: "Header Two element", expectedValue: true },
+    {
+      element: headerOne,
+      expectedValue: true,
+      title: "Header One element is a valid HeaderElement",
+    },
+    {
+      element: headerTwo,
+      expectedValue: true,
+      title: "Header Two element is a valid HeaderElement",
+    },
     {
       element: headerThree,
-      title: "Header Three element",
       expectedValue: true,
+      title: "Header Three element is a valid HeaderElement",
     },
-    { element: blockQuote, title: "Block Quote element", expectedValue: false },
-    { element: headerFour, title: "Header Four element", expectedValue: true },
-    { element: headerFive, title: "Header Five element", expectedValue: true },
-    { element: headerSix, title: "Header Six element", expectedValue: true },
+    {
+      element: blockQuote,
+      expectedValue: false,
+      title: "Block Quote element is an invalid HeaderElement",
+    },
+    {
+      element: headerFour,
+      expectedValue: true,
+      title: "Header Four element  is a valid HeaderElement",
+    },
+    {
+      element: headerFive,
+      expectedValue: true,
+      title: "Header Five element  is a valid HeaderElement",
+    },
+    {
+      element: headerSix,
+      expectedValue: true,
+      title: "Header Six element  is a valid HeaderElement",
+    },
   ];
 
   isHeaderElementTestCases.map(({ element, title, expectedValue }) =>
-    test(`isHeaderElement ${title}`, async () => {
+    test(`isHeaderElement: ${title}`, async () => {
       expect(isHeaderElement(element)).toBe(expectedValue);
     })
   );
