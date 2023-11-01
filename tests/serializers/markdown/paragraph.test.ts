@@ -5,12 +5,31 @@ import {
 import { blockQuote, paragraph } from "./constants";
 
 describe("Markdown ParagraphElement serializer & utils", () => {
-  test("serializeParagraph", async () => {
-    const paragrphText = serializeParagraph(paragraph);
-    expect(paragrphText).toEqual(`Simple example text`);
+  test("serializeParagraph", () => {
+    // Assert paragraphs get a new line character
+    expect(serializeParagraph(paragraph)).toEqual(`Simple example text\n`);
+    // Assert empty paragraphs don't get a new line character
+    expect(
+      serializeParagraph({
+        type: "paragraph",
+        align: "left",
+        children: [{ text: "" }],
+      })
+    ).toEqual("");
+    // Assert inline styles work within paragraphs
+    const inlineParagraphText = serializeParagraph({
+      type: "paragraph",
+      align: "left",
+      children: [
+        { text: "The most " },
+        { text: "amazing", bold: true },
+        { text: " story" },
+      ],
+    });
+    expect(inlineParagraphText).toEqual(`The most **amazing** story\n`);
   });
 
-  test("isParagraphElement", async () => {
+  test("isParagraphElement", () => {
     const validParagraph = isParagraphElement(paragraph);
     expect(validParagraph).toBe(true);
     const invalidParagraph = isParagraphElement(blockQuote);

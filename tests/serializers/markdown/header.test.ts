@@ -45,6 +45,19 @@ describe("Markdown HeaderElement serializer & utils", () => {
       title: "Header Six element",
       expectedValue: "###### Simple example text",
     },
+    {
+      element: {
+        type: "header-one",
+        align: "left",
+        children: [
+          { text: "The most " },
+          { text: "amazing", bold: true },
+          { text: " story" },
+        ],
+      } as HeaderElement,
+      title: "Inline elements aren't supported for Header elements",
+      expectedValue: "# The most amazing story",
+    },
   ];
 
   serializeHeaderTestCases.map(({ element, title, expectedValue }) =>

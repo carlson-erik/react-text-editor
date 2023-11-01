@@ -3,7 +3,6 @@ import {
   isInlineElement,
   isLinkInlineElement,
   serializeInlineText,
-  serializeLinkInlineElement,
 } from "../../../src/serializers/markdown/inline";
 import { blockQuote, linkInline } from "./constants";
 
