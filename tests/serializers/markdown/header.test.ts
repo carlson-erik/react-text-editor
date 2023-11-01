@@ -11,7 +11,7 @@ import {
   headerFive,
   headerSix,
   blockQuote,
-} from "./constants";
+} from "../constants";
 
 describe("Markdown HeaderElement serializer & utils", () => {
   const serializeHeaderTestCases = [

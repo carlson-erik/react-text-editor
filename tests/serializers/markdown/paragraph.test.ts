@@ -2,7 +2,7 @@ import {
   serializeParagraph,
   isParagraphElement,
 } from "../../../src/serializers/markdown/paragraph";
-import { blockQuote, paragraph } from "./constants";
+import { blockQuote, paragraph } from "../constants";
 
 describe("Markdown ParagraphElement serializer & utils", () => {
   test("serializeParagraph", () => {

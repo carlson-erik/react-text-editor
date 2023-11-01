@@ -4,7 +4,7 @@ import {
   LinkInlineElement,
   ListElement,
   ParagraphElement,
-} from "../../../src";
+} from "../../src";
 
 const linkInline: LinkInlineElement = {
   type: "link",

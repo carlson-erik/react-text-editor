@@ -7,7 +7,7 @@ import {
   paragraphWithLink,
   simpleBulletedList,
   multiTierOrderedList,
-} from "./constants";
+} from "../constants";
 
 describe("Markdown Serializer & Export utils", () => {
   const exportToMarkdownTestCases = [

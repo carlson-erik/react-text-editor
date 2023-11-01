@@ -20,7 +20,7 @@ import {
 } from "../mocks/content";
 /* -------- Serializers & Utils -------- */
 import { exportToMarkdown } from "../../src/serializers/markdown";
-import { serializeToPlaintext } from "../../src/serializers/plaintext";
+import { exportToPlaintext } from "../../src/serializers/plaintext";
 import {
   copyToClipboard,
   createAndDownloadFile,
@@ -154,7 +154,7 @@ const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
             </Button>
             <Button
               onClick={() => {
-                const plainText = serializeToPlaintext(editorContent);
+                const plainText = exportToPlaintext(editorContent);
                 onExportClick(args.exportType, fileName, "txt", plainText);
               }}
               primary

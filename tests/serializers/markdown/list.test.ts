@@ -7,9 +7,6 @@ import {
 } from "../../../src/serializers/markdown/list";
 
 describe("Markdown ListElement serializer & utils", () => {
-  test("getListItemText", () => {});
-  test("isListElement", () => {});
-
   const serializeListTestCases = [
     {
       element: {

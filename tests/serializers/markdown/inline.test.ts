@@ -4,7 +4,7 @@ import {
   isLinkInlineElement,
   serializeInlineText,
 } from "../../../src/serializers/markdown/inline";
-import { blockQuote, linkInline } from "./constants";
+import { blockQuote, linkInline } from "../constants";
 
 describe("Markdown LinkInlineElement serializer & utils", () => {
   test("isLinkInlineElement", async () => {

@@ -49,8 +49,8 @@ const convertNodesToPlaintext = (nodes: PlaintextNode[]): string => {
   return plainText;
 };
 
-const serializeToPlaintext = (nodes: ElasticElement[]): string => {
+const exportToPlaintext = (nodes: ElasticElement[]): string => {
   return convertNodesToPlaintext(serializeToPlaintextNodes(nodes, 0));
 };
 
-export { serializeToPlaintext };
+export { exportToPlaintext };
