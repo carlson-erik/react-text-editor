@@ -5,7 +5,7 @@ import { isHeaderElement, serializeHeader } from "./header";
 import { isListElement, serializeList } from "./list";
 import { isParagraphElement, serializeParagraph } from "./paragraph";
 
-const serializeToMarkdown = (nodes: ElasticElement[]): string => {
+const exportToMarkdown = (nodes: ElasticElement[]): string => {
   return nodes.map(transformNode).join("\n");
 };
 
@@ -25,4 +25,4 @@ const transformNode = (node: ElasticElement): string => {
   return Node.string(node);
 };
 
-export { serializeToMarkdown };
+export { exportToMarkdown };

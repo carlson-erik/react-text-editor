@@ -2,6 +2,7 @@ import {
   BlockQuoteElement,
   HeaderElement,
   LinkInlineElement,
+  ListElement,
   ParagraphElement,
 } from "../../../src";
 
@@ -93,6 +94,57 @@ const paragraph: ParagraphElement = {
   ],
 };
 
+const paragraphWithLink: ParagraphElement = {
+  type: "paragraph",
+  align: "left",
+  children: [linkInline],
+};
+
+const simpleBulletedList: ListElement = {
+  type: "bulleted-list",
+  children: [
+    {
+      type: "list-item",
+      children: [{ text: "Apple" }],
+    },
+    {
+      type: "list-item",
+      children: [{ text: "Pear" }],
+    },
+  ],
+};
+
+const multiTierOrderedList: ListElement = {
+  type: "ordered-list",
+  children: [
+    {
+      type: "list-item",
+      children: [{ text: "Apple" }],
+    },
+    {
+      type: "list-item",
+      children: [{ text: "Pear" }],
+    },
+    {
+      type: "bulleted-list",
+      children: [
+        {
+          type: "list-item",
+          children: [{ text: "Toast" }],
+        },
+        {
+          type: "list-item",
+          children: [{ text: "Baget" }],
+        },
+      ],
+    },
+    {
+      type: "list-item",
+      children: [{ text: "Guava" }],
+    },
+  ],
+};
+
 export {
   headerOne,
   headerTwo,
@@ -103,4 +155,7 @@ export {
   blockQuote,
   linkInline,
   paragraph,
+  paragraphWithLink,
+  simpleBulletedList,
+  multiTierOrderedList,
 };

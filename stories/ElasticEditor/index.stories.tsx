@@ -19,9 +19,13 @@ import {
   REACT_ARTICLE,
 } from "../mocks/content";
 /* -------- Serializers & Utils -------- */
+import { exportToMarkdown } from "../../src/serializers/markdown";
 import { serializeToPlaintext } from "../../src/serializers/plaintext";
-import { serializeToMarkdown } from "../../src/serializers/markdown";
-import { createAndDownloadFile, createFileName } from "./utils";
+import {
+  copyToClipboard,
+  createAndDownloadFile,
+  createFileName,
+} from "./utils";
 /* -------- Styles & Themes  -------- */
 import DEFAULT_THEME from "../../src/editor/theme/default";
 import "./index.css";
@@ -72,18 +76,6 @@ const ButtonContainer = styled.div`
   gap: 1rem;
 `;
 
-export default {
-  title: "ElasticEditor",
-  component: ElasticEditor,
-  argTypes: {
-    readOnly: { control: "boolean" },
-    themeType: { control: { disable: true } },
-    toolbarMode: {
-      options: ["top", "bottom", "hover", "none"],
-    },
-  },
-} as Meta<typeof ElasticEditor>;
-
 const EMPTY_DOCUMENT: ElasticElement[] = [
   {
     type: "paragraph",
@@ -91,12 +83,44 @@ const EMPTY_DOCUMENT: ElasticElement[] = [
     children: [{ text: "" }],
   },
 ];
+const onExportClick = (
+  exportType: EditorStoryProps["exportType"],
+  fileName: string,
+  fileExtension: string,
+  content: string
+) => {
+  if (exportType === "download") {
+    // Create and download file
+    createAndDownloadFile(createFileName(fileName, fileExtension), content);
+  } else {
+    // Copy content to clipboard
+    copyToClipboard(content);
+  }
+};
 
-interface EditoryStoryProps extends ElasticEditorProps {
+export default {
+  title: "ElasticEditor",
+  component: ElasticEditor,
+  argTypes: {
+    readOnly: { control: "boolean" },
+    themeType: { control: { disable: true } },
+    toolbarMode: {
+      control: "radio",
+      options: ["top", "bottom", "hover", "none"],
+    },
+    exportType: {
+      control: "radio",
+      options: ["copy", "download"],
+    },
+  },
+} as Meta<typeof ElasticEditor>;
+
+interface EditorStoryProps extends ElasticEditorProps {
   fileName: string;
+  exportType: "copy" | "download";
 }
 
-const EditorStory: StoryFn<EditoryStoryProps> = (args: EditoryStoryProps) => {
+const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
   const fileName = args.fileName;
   const [editorContent, setEditorContent] = useState<ElasticElement[]>(
     args.initialContent || EMPTY_DOCUMENT
@@ -117,8 +141,10 @@ const EditorStory: StoryFn<EditoryStoryProps> = (args: EditoryStoryProps) => {
             <Button
               onClick={() => {
                 const elasticElementsText = JSON.stringify(editorContent);
-                createAndDownloadFile(
-                  createFileName(fileName, "json"),
+                onExportClick(
+                  args.exportType,
+                  fileName,
+                  "json",
                   elasticElementsText
                 );
               }}
@@ -129,10 +155,7 @@ const EditorStory: StoryFn<EditoryStoryProps> = (args: EditoryStoryProps) => {
             <Button
               onClick={() => {
                 const plainText = serializeToPlaintext(editorContent);
-                createAndDownloadFile(
-                  createFileName(fileName, "txt"),
-                  plainText
-                );
+                onExportClick(args.exportType, fileName, "txt", plainText);
               }}
               primary
             >
@@ -140,11 +163,8 @@ const EditorStory: StoryFn<EditoryStoryProps> = (args: EditoryStoryProps) => {
             </Button>
             <Button
               onClick={() => {
-                const markdownText = serializeToMarkdown(editorContent);
-                createAndDownloadFile(
-                  createFileName(fileName, "md"),
-                  markdownText
-                );
+                const markdownText = exportToMarkdown(editorContent);
+                onExportClick(args.exportType, fileName, "md", markdownText);
               }}
               primary
             >
@@ -170,6 +190,7 @@ Empty.args = {
   readOnly: false,
   toolbarMode: "top",
   fileName: "Empty",
+  exportType: "copy",
 };
 Empty.argTypes = {
   initialContent: { control: { disable: true } },
@@ -181,6 +202,7 @@ LoremIpsum.args = {
   initialContent: LOREM_IPSUM,
   toolbarMode: "top",
   fileName: "Lorem Ipsum",
+  exportType: "copy",
 };
 
 export const HanselAndGretel = EditorStory.bind({});
@@ -189,6 +211,7 @@ HanselAndGretel.args = {
   initialContent: HANSEL_AND_GRETEL,
   toolbarMode: "top",
   fileName: "Hansel And Gretel",
+  exportType: "copy",
 };
 
 export const ListExamples = EditorStory.bind({});
@@ -197,6 +220,7 @@ ListExamples.args = {
   initialContent: LIST_EXAMPLES,
   toolbarMode: "top",
   fileName: "List Examples",
+  exportType: "copy",
 };
 
 export const ArticleExample = EditorStory.bind({});
@@ -205,4 +229,5 @@ ArticleExample.args = {
   initialContent: REACT_ARTICLE,
   toolbarMode: "top",
   fileName: "React Article",
+  exportType: "copy",
 };
