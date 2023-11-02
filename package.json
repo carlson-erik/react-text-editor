@@ -1,6 +1,6 @@
 {
   "name": "elastic-editor",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "storybook dev -p 4334 ",
-    "test": "jest --coverage --silent",
+    "test": "jest --silent --config='./jest.config.ts'",
     "build:rollup": "rollup -c",
     "build-storybook": "storybook build"
   },

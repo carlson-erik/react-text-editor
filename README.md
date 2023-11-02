@@ -1,25 +1,25 @@
 # ElasticEditor
 
-Easy-to-reuse content editor for any React project. Allowing your users to create rich content is a hard problem and ElasticEditor solves it for you. ElasticEditor allows you to easily add user generated rich content to your product. ElasticEditor generates semantic, accessible, easily styled HTML for you and allows you to focus on your business.
+Easy-to-reuse content editor for any React project. Allowing your users to create rich content is a hard problem and ElasticEditor solves it for you. ElasticEditor allows you to easily add user generated rich content to your product. ElasticEditor generates semantic, accessible, easily styled HTML for you.
 
 ## Features
 
 Allows users to create rich content with the following elements:
 
-### Text/Content Elements
+### Text Elements
 
 - Paragraphs
 - Block Quotes
-- Headings (6 sizes)
+- Headings
 - Lists (Bulleted and Ordered)
 
 ### Text Formatting
 
 Allows users to format text in the following ways:
 
-- Text Styling (Bold, Italics, Underline and Strikethrough)
-- Text Alignment (Left, Center, Right and Justify)
-- Text Color
+- Styling (Bold, Italics, Underline and Strikethrough)
+- Alignment (Left, Center, Right and Justify)
+- Color
 
 ### Undo/Redo
 
@@ -31,7 +31,11 @@ Allows users to theme their rich content in both Light and Dark Themes. This can
 
 ### Toolbar Modes
 
-Style the toolbar as hovering above the content, or a toolbar positioned the top/bottom of the editor.
+Style the toolbar as hovering above the content, positioned the top/bottom of the editor, or turned of entirely.
+
+### Export to Text & Markdown
+
+Serializers, such as`exportToPlaintext` and `exportToMarkdown`, offer users a way to reuse their content by converting it into popular forms.
 
 ## Component API
 
@@ -64,3 +68,21 @@ Style the toolbar as hovering above the content, or a toolbar positioned the top
 **content** (optional):
 
 - Rich content to be rendered by Editor. When not passed, an empty document is created.
+
+## Serializer API
+
+### exportToPlaintext
+
+Converts a list of ElasticElement nodes from ElasticEditor into Plaintext.
+
+```ts
+function exportToPlaintext(nodes: ElasticElement[]): string {}
+```
+
+### exportToMarkdown
+
+Converts a list of ElasticElement nodes from ElasticEditor into Markdown.
+
+```ts
+function exportToMarkdown(nodes: ElasticElement[]): string {}
+```

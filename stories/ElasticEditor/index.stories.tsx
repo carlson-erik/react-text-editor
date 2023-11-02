@@ -1,21 +1,36 @@
 /* -------- 3rd Party APIs -------- */
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDarkMode } from "storybook-dark-mode";
 import type { Meta, StoryFn } from "@storybook/react";
 /* -------- ElasticEditor -------- */
-import { ElasticEditor, ElasticEditorProps, ThemeTypes } from "../../src";
+import {
+  ElasticElement,
+  ElasticEditor,
+  ElasticEditorProps,
+  ThemeTypes,
+} from "../../src";
+import Button from "../../src/editor/toolbar/components/button";
 /* -------- Mock Content -------- */
 import {
   LOREM_IPSUM,
   HANSEL_AND_GRETEL,
   LIST_EXAMPLES,
+  REACT_ARTICLE,
 } from "../mocks/content";
+/* -------- Serializers & Utils -------- */
+import { exportToMarkdown } from "../../src/serializers/markdown";
+import { exportToPlaintext } from "../../src/serializers/plaintext";
+import {
+  copyToClipboard,
+  createAndDownloadFile,
+  createFileName,
+} from "./utils";
 /* -------- Styles & Themes  -------- */
 import DEFAULT_THEME from "../../src/editor/theme/default";
 import "./index.css";
 import { ThemeConfiguration } from "../../src/editor/theme/types";
-
+import { ThemeProvider } from "../../src/editor/theme/context";
 /* -------- Styled Components -------- */
 const Container = styled.div<{
   theme: ThemeConfiguration;
@@ -54,6 +69,35 @@ const EditorContainer = styled.div<{
   }
 `;
 
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 1rem 0 1rem 0;
+  gap: 1rem;
+`;
+
+const EMPTY_DOCUMENT: ElasticElement[] = [
+  {
+    type: "paragraph",
+    align: "left",
+    children: [{ text: "" }],
+  },
+];
+const onExportClick = (
+  exportType: EditorStoryProps["exportType"],
+  fileName: string,
+  fileExtension: string,
+  content: string
+) => {
+  if (exportType === "download") {
+    // Create and download file
+    createAndDownloadFile(createFileName(fileName, fileExtension), content);
+  } else {
+    // Copy content to clipboard
+    copyToClipboard(content);
+  }
+};
+
 export default {
   title: "ElasticEditor",
   component: ElasticEditor,
@@ -61,14 +105,26 @@ export default {
     readOnly: { control: "boolean" },
     themeType: { control: { disable: true } },
     toolbarMode: {
+      control: "radio",
       options: ["top", "bottom", "hover", "none"],
+    },
+    exportType: {
+      control: "radio",
+      options: ["copy", "download"],
     },
   },
 } as Meta<typeof ElasticEditor>;
 
-const EditorStory: StoryFn<typeof ElasticEditor> = (
-  args: ElasticEditorProps
-) => {
+interface EditorStoryProps extends ElasticEditorProps {
+  fileName: string;
+  exportType: "copy" | "download";
+}
+
+const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
+  const fileName = args.fileName;
+  const [editorContent, setEditorContent] = useState<ElasticElement[]>(
+    args.initialContent || EMPTY_DOCUMENT
+  );
   const themeType = useDarkMode() ? ThemeTypes.DARK : ThemeTypes.LIGHT;
   const themeProps: {
     theme: ThemeConfiguration;
@@ -80,7 +136,50 @@ const EditorStory: StoryFn<typeof ElasticEditor> = (
   return (
     <Container {...themeProps}>
       <EditorContainer {...themeProps}>
-        <ElasticEditor {...args} {...themeProps} theme={DEFAULT_THEME} />
+        <ThemeProvider theme={DEFAULT_THEME} type={themeType}>
+          <ButtonContainer>
+            <Button
+              onClick={() => {
+                const elasticElementsText = JSON.stringify(editorContent);
+                onExportClick(
+                  args.exportType,
+                  fileName,
+                  "json",
+                  elasticElementsText
+                );
+              }}
+              primary
+            >
+              ElasticEditor
+            </Button>
+            <Button
+              onClick={() => {
+                const plainText = exportToPlaintext(editorContent);
+                onExportClick(args.exportType, fileName, "txt", plainText);
+              }}
+              primary
+            >
+              Plaintext
+            </Button>
+            <Button
+              onClick={() => {
+                const markdownText = exportToMarkdown(editorContent);
+                onExportClick(args.exportType, fileName, "md", markdownText);
+              }}
+              primary
+            >
+              Markdown
+            </Button>
+          </ButtonContainer>
+        </ThemeProvider>
+        <ElasticEditor
+          {...args}
+          {...themeProps}
+          theme={DEFAULT_THEME}
+          onChange={(newContent) =>
+            setEditorContent(newContent as ElasticElement[])
+          }
+        />
       </EditorContainer>
     </Container>
   );
@@ -90,6 +189,8 @@ export const Empty = EditorStory.bind({});
 Empty.args = {
   readOnly: false,
   toolbarMode: "top",
+  fileName: "Empty",
+  exportType: "copy",
 };
 Empty.argTypes = {
   initialContent: { control: { disable: true } },
@@ -99,7 +200,9 @@ export const LoremIpsum = EditorStory.bind({});
 LoremIpsum.args = {
   readOnly: false,
   initialContent: LOREM_IPSUM,
-  toolbarMode: "hover",
+  toolbarMode: "top",
+  fileName: "Lorem Ipsum",
+  exportType: "copy",
 };
 
 export const HanselAndGretel = EditorStory.bind({});
@@ -107,11 +210,24 @@ HanselAndGretel.args = {
   readOnly: false,
   initialContent: HANSEL_AND_GRETEL,
   toolbarMode: "top",
+  fileName: "Hansel And Gretel",
+  exportType: "copy",
 };
 
 export const ListExamples = EditorStory.bind({});
 ListExamples.args = {
   readOnly: false,
   initialContent: LIST_EXAMPLES,
-  toolbarMode: "hover",
+  toolbarMode: "top",
+  fileName: "List Examples",
+  exportType: "copy",
+};
+
+export const ArticleExample = EditorStory.bind({});
+ArticleExample.args = {
+  readOnly: false,
+  initialContent: REACT_ARTICLE,
+  toolbarMode: "top",
+  fileName: "React Article",
+  exportType: "copy",
 };
