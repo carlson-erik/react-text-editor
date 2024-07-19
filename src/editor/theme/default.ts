@@ -1,7 +1,7 @@
 import { Theme } from "./types";
 
 const DEFAULT_THEME: Theme = {
-  name: "ElasticEditor",
+  name: "ReactTextEditor",
   light: {
     editor: {
       background: "#FFFFFF",

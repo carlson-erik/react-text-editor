@@ -1,12 +1,12 @@
 {
-  "name": "elastic-editor",
-  "version": "0.4.1",
+  "name": "react-text-editor",
+  "version": "0.5.0",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
-  "umd": "dist/elastic-editor.js",
-  "umdMin": "dist/elastic-editor.min.js",
+  "umd": "dist/react-text-editor.js",
+  "umdMin": "dist/react-text-editor.min.js",
   "umdGlobals": {
     "react": "React"
   },

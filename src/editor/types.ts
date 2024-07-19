@@ -2,7 +2,7 @@ import { BaseEditor } from "slate";
 import { ReactEditor } from "slate-react";
 import { HistoryEditor } from "slate-history";
 
-/* -------- Element Types -------- */
+/* -------- BaseElement Types -------- */
 export type HeaderElementType =
   | "header-one"
   | "header-two"
@@ -48,38 +48,38 @@ export interface TextLeaf {
 /* -------- Elements -------- */
 export type InlineElement = TextLeaf | LinkInlineElement;
 
-export interface Element {
+export interface BaseElement {
   type: ElementType;
 }
 
-export interface ParagraphElement extends Element {
+export interface ParagraphElement extends BaseElement {
   type: "paragraph";
   align: Alignment;
   children: InlineElement[];
 }
 
-export interface BlockQuoteElement extends Element {
+export interface BlockQuoteElement extends BaseElement {
   type: "block-quote";
   children: InlineElement[];
 }
 
-export interface HeaderElement extends Element {
+export interface HeaderElement extends BaseElement {
   type: HeaderElementType;
   align: Alignment;
   children: InlineElement[];
 }
 
-export interface ListItemElement extends Element {
+export interface ListItemElement extends BaseElement {
   type: "list-item";
   children: InlineElement[];
 }
 
-export interface ListElement extends Element {
+export interface ListElement extends BaseElement {
   type: ListElementType;
   children: (ListElement | ListItemElement)[];
 }
 
-export interface LinkInlineElement extends Element {
+export interface LinkInlineElement extends BaseElement {
   type: InlineElementType;
   url: string;
   children: InlineElement[];
@@ -87,19 +87,19 @@ export interface LinkInlineElement extends Element {
 
 export type TextElement = ParagraphElement | BlockQuoteElement | HeaderElement;
 
-export type ElasticElement =
+export type EditorElement =
   | TextElement
   | ListElement
   | ListItemElement
   | LinkInlineElement;
 
 /* -------- Editor -------- */
-export type ElasticEditor = BaseEditor & ReactEditor & HistoryEditor;
+export type ReactTextEditor = BaseEditor & ReactEditor & HistoryEditor;
 
 declare module "slate" {
   interface CustomTypes {
-    Editor: ElasticEditor;
-    Element: ElasticElement;
+    Editor: ReactTextEditor;
+    BaseElement: EditorElement;
     Text: TextLeaf;
   }
 }

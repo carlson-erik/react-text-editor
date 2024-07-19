@@ -1,7 +1,7 @@
-import { ElasticElement, HeaderElement } from "../../editor/types";
+import { EditorElement, HeaderElement } from "../../editor/types";
 import { serializeInlineText } from "./inline";
 
-const isHeaderElement = (node: ElasticElement): node is HeaderElement => {
+const isHeaderElement = (node: EditorElement): node is HeaderElement => {
   return [
     "header-one",
     "header-two",

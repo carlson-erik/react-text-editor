@@ -1,6 +1,6 @@
-# ElasticEditor
+# ReactTextEditor
 
-Easy-to-reuse content editor for any React project. Allowing your users to create rich content is a hard problem and ElasticEditor solves it for you. ElasticEditor allows you to easily add user generated rich content to your product. ElasticEditor generates semantic, accessible, easily styled HTML for you.
+Easy-to-reuse content editor for any React project. Allowing your users to create rich content is a hard problem and ReactTextEditor solves it for you. ReactTextEditor allows you to easily add user generated rich content to your product. ReactTextEditor generates semantic, accessible, easily styled HTML for you.
 
 ## Features
 
@@ -39,7 +39,7 @@ Serializers, such as`exportToPlaintext` and `exportToMarkdown`, offer users a wa
 
 ## Component API
 
-### ElasticEditor
+### ReactTextEditor
 
 **readOnly**
 
@@ -73,16 +73,16 @@ Serializers, such as`exportToPlaintext` and `exportToMarkdown`, offer users a wa
 
 ### exportToPlaintext
 
-Converts a list of ElasticElement nodes from ElasticEditor into Plaintext.
+Converts a list of EditorElement nodes from ReactTextEditor into Plaintext.
 
 ```ts
-function exportToPlaintext(nodes: ElasticElement[]): string {}
+function exportToPlaintext(nodes: EditorElement[]): string {}
 ```
 
 ### exportToMarkdown
 
-Converts a list of ElasticElement nodes from ElasticEditor into Markdown.
+Converts a list of EditorElement nodes from ReactTextEditor into Markdown.
 
 ```ts
-function exportToMarkdown(nodes: ElasticElement[]): string {}
+function exportToMarkdown(nodes: EditorElement[]): string {}
 ```

@@ -4,23 +4,23 @@ import type { Theme, ThemeTypes } from "./editor/theme/types";
 import Editor, { EditorProps } from "./editor";
 /* -------- Contexts & Providers -------- */
 import { ThemeProvider } from "./editor/theme/context";
-import { ElasticElement } from "./editor/types";
+import { EditorElement } from "./editor/types";
 
-export type ElasticEditorProps = {
+export type ReactTextEditorProps = {
   /** Switches editor between editing (false) and read only (true) modes. */
   readOnly: boolean;
   /** onChange function that fires whenever there's a change in the editor's content. */
-  onChange: (content: ElasticElement[]) => void;
+  onChange: (content: EditorElement[]) => void;
   /** Determines toolbar type and location  */
   toolbarMode: EditorProps["toolbarMode"];
   /** Initial editor content */
-  initialContent?: ElasticElement[];
+  initialContent?: EditorElement[];
   theme?: Theme;
   /** Enables witching between Light/Dark themes */
   themeType?: ThemeTypes;
 };
 
-const ElasticEditor = (props: ElasticEditorProps) => {
+const ReactTextEditor = (props: ReactTextEditorProps) => {
   const { readOnly, initialContent, theme, themeType, toolbarMode, onChange } =
     props;
   return (
@@ -35,4 +35,4 @@ const ElasticEditor = (props: ElasticEditorProps) => {
   );
 };
 
-export default ElasticEditor;
+export default ReactTextEditor;

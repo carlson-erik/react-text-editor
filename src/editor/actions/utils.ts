@@ -1,7 +1,7 @@
 import { Path, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
 import {
-  ElasticEditor,
+  ReactTextEditor,
   ElementType,
   InlineElementType,
   ListElement,
@@ -58,7 +58,7 @@ const collectAllTextLeaves = (listElement: ListElement): TextLeaf[] => {
 };
 
 const focusPath = (
-  editor: ElasticEditor,
+  editor: ReactTextEditor,
   focusPath: Path,
   offset?: number
 ): void => {

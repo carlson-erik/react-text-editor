@@ -1,6 +1,6 @@
-import { ElasticElement } from "../../src/editor/types";
+import { EditorElement } from "../../src/editor/types";
 
-const LOREM_IPSUM: ElasticElement[] = [
+const LOREM_IPSUM: EditorElement[] = [
   {
     type: "header-one",
     align: "center",
@@ -87,7 +87,7 @@ const LOREM_IPSUM: ElasticElement[] = [
   },
 ];
 
-const HANSEL_AND_GRETEL: ElasticElement[] = [
+const HANSEL_AND_GRETEL: EditorElement[] = [
   {
     type: "header-one",
     children: [
@@ -164,7 +164,7 @@ const HANSEL_AND_GRETEL: ElasticElement[] = [
   },
 ];
 
-const LIST_EXAMPLES: ElasticElement[] = [
+const LIST_EXAMPLES: EditorElement[] = [
   {
     type: "header-one",
     align: "left",
@@ -346,7 +346,7 @@ const LIST_EXAMPLES: ElasticElement[] = [
   },
 ];
 
-const REACT_ARTICLE: ElasticElement[] = [
+const REACT_ARTICLE: EditorElement[] = [
   {
     type: "header-one",
     align: "left",

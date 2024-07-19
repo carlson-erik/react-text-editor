@@ -1,8 +1,8 @@
 import React from "react";
 import { Slate } from "slate-react";
-import { ElasticEditor } from "../../../../../src/editor/types";
+import { ReactTextEditor } from "../../../../../src/editor/types";
 import { LIST_EXAMPLES } from "../../../../../stories/mocks/content";
-import { getElasticEditor } from "../../../../utils";
+import { getReactTextEditor } from "../../../../utils";
 import {
   fireEvent,
   getByTestId,
@@ -24,9 +24,9 @@ const mockTextRangeSelection = {
 };
 
 describe("Text Color Toolbar Section ", () => {
-  let editor: ElasticEditor;
+  let editor: ReactTextEditor;
   beforeEach(() => {
-    editor = getElasticEditor();
+    editor = getReactTextEditor();
   });
 
   test("Selecting Text Range and changing the text color will change the selected text's color.", () => {

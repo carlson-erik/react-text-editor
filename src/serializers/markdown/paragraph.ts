@@ -1,7 +1,7 @@
-import { ElasticElement, ParagraphElement } from "../../editor/types";
+import { EditorElement, ParagraphElement } from "../../editor/types";
 import { serializeInlineText } from "./inline";
 
-const isParagraphElement = (node: ElasticElement): node is ParagraphElement => {
+const isParagraphElement = (node: EditorElement): node is ParagraphElement => {
   return node.type === "paragraph";
 };
 
