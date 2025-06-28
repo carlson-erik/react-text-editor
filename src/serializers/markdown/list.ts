@@ -1,16 +1,16 @@
-import { ElasticElement, InlineElement, ListElement } from "../../editor/types";
+import { EditorElement, InlineElement, ListElement } from "../../editor/types";
 import { getOrderedIndex } from "../plaintext/list";
 import { serializeInlineText } from "./inline";
 
-const isListElement = (node: ElasticElement): node is ListElement => {
+const isListElement = (node: EditorElement): node is ListElement => {
   return ["ordered-list", "bulleted-list"].includes(node.type);
 };
 
 export const LIST_PADDING = "   ";
 
 const getListItemText = (
-  parentElement: ElasticElement,
-  element: ElasticElement,
+  parentElement: EditorElement,
+  element: EditorElement,
   listIndex: number,
   depth: number
 ): string => {

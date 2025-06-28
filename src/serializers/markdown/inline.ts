@@ -1,13 +1,13 @@
 import { Node } from "slate";
 import {
-  ElasticElement,
+  EditorElement,
   InlineElement,
   LinkInlineElement,
   TextLeaf,
 } from "../../editor/types";
 
 const isInlineElement = (
-  node: ElasticElement | TextLeaf
+  node: EditorElement | TextLeaf
 ): node is InlineElement => {
   return (
     ("type" in node && node.type === "link" && !!node.url) || "text" in node
@@ -15,7 +15,7 @@ const isInlineElement = (
 };
 
 const isLinkInlineElement = (
-  node: ElasticElement | TextLeaf
+  node: EditorElement | TextLeaf
 ): node is LinkInlineElement => {
   return "type" in node && node.type === "link" && "url" in node;
 };

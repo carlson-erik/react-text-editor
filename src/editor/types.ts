@@ -87,19 +87,19 @@ export interface LinkInlineElement extends Element {
 
 export type TextElement = ParagraphElement | BlockQuoteElement | HeaderElement;
 
-export type ElasticElement =
+export type EditorElement =
   | TextElement
   | ListElement
   | ListItemElement
   | LinkInlineElement;
 
 /* -------- Editor -------- */
-export type ElasticEditor = BaseEditor & ReactEditor & HistoryEditor;
+export type GneissEditor = BaseEditor & ReactEditor & HistoryEditor;
 
 declare module "slate" {
   interface CustomTypes {
-    Editor: ElasticEditor;
-    Element: ElasticElement;
+    Editor: GneissEditor;
+    Element: EditorElement;
     Text: TextLeaf;
   }
 }

@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDarkMode } from "storybook-dark-mode";
 import type { Meta, StoryFn } from "@storybook/react";
-/* -------- ElasticEditor -------- */
+/* -------- GneissEditor -------- */
 import {
-  ElasticElement,
-  ElasticEditor,
-  ElasticEditorProps,
+  EditorElement,
+  GneissEditor,
+  GneissEditorProps,
   ThemeTypes,
 } from "../../src";
 import Button from "../../src/editor/toolbar/components/button";
@@ -76,7 +76,7 @@ const ButtonContainer = styled.div`
   gap: 1rem;
 `;
 
-const EMPTY_DOCUMENT: ElasticElement[] = [
+const EMPTY_DOCUMENT: EditorElement[] = [
   {
     type: "paragraph",
     align: "left",
@@ -99,8 +99,8 @@ const onExportClick = (
 };
 
 export default {
-  title: "ElasticEditor",
-  component: ElasticEditor,
+  title: "GneissEditor",
+  component: GneissEditor,
   argTypes: {
     readOnly: { control: "boolean" },
     themeType: { control: { disable: true } },
@@ -113,16 +113,16 @@ export default {
       options: ["copy", "download"],
     },
   },
-} as Meta<typeof ElasticEditor>;
+} as Meta<typeof GneissEditor>;
 
-interface EditorStoryProps extends ElasticEditorProps {
+interface EditorStoryProps extends GneissEditorProps {
   fileName: string;
   exportType: "copy" | "download";
 }
 
 const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
   const fileName = args.fileName;
-  const [editorContent, setEditorContent] = useState<ElasticElement[]>(
+  const [editorContent, setEditorContent] = useState<EditorElement[]>(
     args.initialContent || EMPTY_DOCUMENT
   );
   const themeType = useDarkMode() ? ThemeTypes.DARK : ThemeTypes.LIGHT;
@@ -140,17 +140,17 @@ const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
           <ButtonContainer>
             <Button
               onClick={() => {
-                const elasticElementsText = JSON.stringify(editorContent);
+                const EditorElementsText = JSON.stringify(editorContent);
                 onExportClick(
                   args.exportType,
                   fileName,
                   "json",
-                  elasticElementsText
+                  EditorElementsText
                 );
               }}
               primary
             >
-              ElasticEditor
+              GneissEditor
             </Button>
             <Button
               onClick={() => {
@@ -172,12 +172,12 @@ const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
             </Button>
           </ButtonContainer>
         </ThemeProvider>
-        <ElasticEditor
+        <GneissEditor
           {...args}
           {...themeProps}
           theme={DEFAULT_THEME}
           onChange={(newContent) =>
-            setEditorContent(newContent as ElasticElement[])
+            setEditorContent(newContent as EditorElement[])
           }
         />
       </EditorContainer>

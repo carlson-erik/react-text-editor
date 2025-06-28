@@ -1,13 +1,13 @@
 import { Node } from "slate";
-import { ElasticElement, ListElement } from "../../editor/types";
+import { EditorElement, ListElement } from "../../editor/types";
 
-const isListElement = (element: ElasticElement): element is ListElement => {
+const isListElement = (element: EditorElement): element is ListElement => {
   return element.type === "bulleted-list" || element.type === "ordered-list";
 };
 
 const getListItemText = (
-  parentElement: ElasticElement,
-  element: ElasticElement,
+  parentElement: EditorElement,
+  element: EditorElement,
   listIndex: number,
   depth: number
 ): string => {
@@ -17,8 +17,8 @@ const getListItemText = (
 };
 
 const getOrderedIndex = (
-  nodes: ElasticElement[],
-  node: ElasticElement
+  nodes: EditorElement[],
+  node: EditorElement
 ): number => {
   let listIndex = 0;
   for (let i = 0; i < nodes.length; i++) {

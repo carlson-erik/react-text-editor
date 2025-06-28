@@ -1,8 +1,8 @@
 import React from "react";
 import { Slate } from "slate-react";
-import { ElasticEditor } from "../../../../../src/editor/types";
+import { GneissEditor } from "../../../../../src/editor/types";
 import { LIST_EXAMPLES } from "../../../../../stories/mocks/content";
-import { getElasticEditor } from "../../../../utils";
+import { getGneissEditor } from "../../../../utils";
 import { getByTestId, queryByTestId, render } from "@testing-library/react";
 import TextFormatSection from "../../../../../src/editor/toolbar/sections/text/format";
 import userEvent from "@testing-library/user-event";
@@ -19,9 +19,9 @@ const mockTextRangeSelection = {
 };
 
 describe("Text Format Toolbar Section ", () => {
-  let editor: ElasticEditor;
+  let editor: GneissEditor;
   beforeEach(() => {
-    editor = getElasticEditor();
+    editor = getGneissEditor();
   });
 
   test("Selecting Text Range and clicking the Bold button will bold the text.", () => {

@@ -4,14 +4,14 @@ import { getByTestId, queryByTestId, render } from "@testing-library/react";
 
 import ListSection from "../../../../src/editor/toolbar/sections/lists";
 import { LIST_EXAMPLES } from "../../../../stories/mocks/content";
-import { getElasticEditor } from "../../../utils";
+import { getGneissEditor } from "../../../utils";
 import userEvent from "@testing-library/user-event";
-import type { ElasticEditor } from "../../../../src/editor/types";
+import type { GneissEditor } from "../../../../src/editor/types";
 
 describe("Lists Toolbar Section ", () => {
-  let editor: ElasticEditor;
+  let editor: GneissEditor;
   beforeEach(() => {
-    editor = getElasticEditor();
+    editor = getGneissEditor();
   });
 
   test("Ordered List Button is active for an Ordered List selection and handles changing the list to a Bulleted List", async () => {

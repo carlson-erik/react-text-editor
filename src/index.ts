@@ -1,16 +1,16 @@
 /* -------- Types -------- */
 import type { Theme } from "./editor/theme/types";
-import type { ElasticEditorProps } from "./ElasticEditor";
+import type { GneissEditorProps } from "./GneissEditor";
 /* -------- Enums -------- */
 import { ThemeTypes } from "./editor/theme/types";
 /* -------- Serializers -------- */
 import { exportToMarkdown } from "./serializers/markdown";
 import { exportToPlaintext } from "./serializers/plaintext";
 /* -------- Components -------- */
-import ElasticEditor from "./ElasticEditor";
+import GneissEditor from "./GneissEditor";
 
-export { ElasticEditor, ThemeTypes, exportToPlaintext, exportToMarkdown };
+export { GneissEditor, ThemeTypes, exportToPlaintext, exportToMarkdown };
 
 export * from "./editor/types";
 export * from "./editor/theme/types";
-export type { ElasticEditorProps, Theme };
+export type { GneissEditorProps, Theme };

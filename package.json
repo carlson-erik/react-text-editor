@@ -1,12 +1,12 @@
 {
-  "name": "elastic-editor",
+  "name": "gneiss-editor",
   "version": "0.4.1",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
-  "umd": "dist/elastic-editor.js",
-  "umdMin": "dist/elastic-editor.min.js",
+  "umd": "dist/gneiss-editor.js",
+  "umdMin": "dist/gneiss-editor.min.js",
   "umdGlobals": {
     "react": "React"
   },
