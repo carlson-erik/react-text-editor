@@ -5,7 +5,7 @@ import { useDarkMode } from "storybook-dark-mode";
 import type { Meta, StoryFn } from "@storybook/react";
 /* -------- GneissEditor -------- */
 import {
-  ElasticElement,
+  EditorElement,
   GneissEditor,
   GneissEditorProps,
   ThemeTypes,
@@ -76,7 +76,7 @@ const ButtonContainer = styled.div`
   gap: 1rem;
 `;
 
-const EMPTY_DOCUMENT: ElasticElement[] = [
+const EMPTY_DOCUMENT: EditorElement[] = [
   {
     type: "paragraph",
     align: "left",
@@ -122,7 +122,7 @@ interface EditorStoryProps extends GneissEditorProps {
 
 const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
   const fileName = args.fileName;
-  const [editorContent, setEditorContent] = useState<ElasticElement[]>(
+  const [editorContent, setEditorContent] = useState<EditorElement[]>(
     args.initialContent || EMPTY_DOCUMENT
   );
   const themeType = useDarkMode() ? ThemeTypes.DARK : ThemeTypes.LIGHT;
@@ -140,12 +140,12 @@ const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
           <ButtonContainer>
             <Button
               onClick={() => {
-                const elasticElementsText = JSON.stringify(editorContent);
+                const EditorElementsText = JSON.stringify(editorContent);
                 onExportClick(
                   args.exportType,
                   fileName,
                   "json",
-                  elasticElementsText
+                  EditorElementsText
                 );
               }}
               primary
@@ -177,7 +177,7 @@ const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
           {...themeProps}
           theme={DEFAULT_THEME}
           onChange={(newContent) =>
-            setEditorContent(newContent as ElasticElement[])
+            setEditorContent(newContent as EditorElement[])
           }
         />
       </EditorContainer>

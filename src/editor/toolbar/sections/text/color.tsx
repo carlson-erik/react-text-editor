@@ -17,7 +17,7 @@ import {
 import Color from "../../icons/color";
 import styled from "styled-components";
 import { ThemeConfiguration } from "../../../theme/types";
-import { GneissEditor, ElasticElement } from "../../../types";
+import { GneissEditor, EditorElement } from "../../../types";
 import Button from "../../components/button";
 import { isLinkActive } from "../../../actions";
 
@@ -75,7 +75,7 @@ interface ColorConfigOverlayProps {
   targetRef: HTMLElement;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
-  currentNode: ElasticElement;
+  currentNode: EditorElement;
 }
 
 const getCurrentColor = (editor: GneissEditor, primaryTextColor: string) => {

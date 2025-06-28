@@ -1,14 +1,14 @@
 import { Node } from "slate";
-import { ElasticElement } from "../../editor/types";
+import { EditorElement } from "../../editor/types";
 import { getListItemText, getOrderedIndex, isListElement } from "./list";
 
 export type PlaintextNode = string | string[];
 
 const serializeToPlaintextNodes = (
-  nodes: ElasticElement[],
+  nodes: EditorElement[],
   depth: number
 ): PlaintextNode[] => {
-  return nodes.map((node: ElasticElement) => {
+  return nodes.map((node: EditorElement) => {
     switch (node.type) {
       case "block-quote":
         return `\n"${Node.string(node)}"\n`;
@@ -49,7 +49,7 @@ const convertNodesToPlaintext = (nodes: PlaintextNode[]): string => {
   return plainText;
 };
 
-const exportToPlaintext = (nodes: ElasticElement[]): string => {
+const exportToPlaintext = (nodes: EditorElement[]): string => {
   return convertNodesToPlaintext(serializeToPlaintextNodes(nodes, 0));
 };
 

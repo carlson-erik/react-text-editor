@@ -73,16 +73,16 @@ Serializers, such as`exportToPlaintext` and `exportToMarkdown`, offer users a wa
 
 ### exportToPlaintext
 
-Converts a list of ElasticElement nodes from GneissEditor into Plaintext.
+Converts a list of EditorElement nodes from GneissEditor into Plaintext.
 
 ```ts
-function exportToPlaintext(nodes: ElasticElement[]): string {}
+function exportToPlaintext(nodes: EditorElement[]): string {}
 ```
 
 ### exportToMarkdown
 
-Converts a list of ElasticElement nodes from GneissEditor into Markdown.
+Converts a list of EditorElement nodes from GneissEditor into Markdown.
 
 ```ts
-function exportToMarkdown(nodes: ElasticElement[]): string {}
+function exportToMarkdown(nodes: EditorElement[]): string {}
 ```

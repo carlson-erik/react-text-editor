@@ -2,7 +2,7 @@ import { ReactEditor } from "slate-react";
 import { Editor, Element, Transforms, Range, Path } from "slate";
 import isUrl from "is-url";
 
-import { GneissEditor, ElasticElement, LinkInlineElement } from "../types";
+import { GneissEditor, EditorElement, LinkInlineElement } from "../types";
 import { getElementPath, getElementNode } from "./";
 
 const isInlineActive = (editor: GneissEditor) => {
@@ -12,7 +12,7 @@ const isInlineActive = (editor: GneissEditor) => {
   return !!link;
 };
 
-const getContainer = (editor: GneissEditor): ElasticElement | null => {
+const getContainer = (editor: GneissEditor): EditorElement | null => {
   if (!isInlineActive(editor)) return null;
   const parentPath = getContainerPath(editor);
   if (!parentPath) return null;
@@ -27,7 +27,7 @@ const getContainerPath = (editor: GneissEditor): Path | null => {
   return path;
 };
 
-const getContainerParent = (editor: GneissEditor): ElasticElement | null => {
+const getContainerParent = (editor: GneissEditor): EditorElement | null => {
   if (!isInlineActive(editor)) return null;
   const containerParentPath = getContainerParentPath(editor);
   if (!containerParentPath) return null;

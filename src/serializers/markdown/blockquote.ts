@@ -1,8 +1,8 @@
-import { BlockQuoteElement, ElasticElement } from "../../editor/types";
+import { BlockQuoteElement, EditorElement } from "../../editor/types";
 import { serializeInlineText } from "./inline";
 
 const isBlockQuoteElement = (
-  node: ElasticElement
+  node: EditorElement
 ): node is BlockQuoteElement => {
   return node.type === "block-quote";
 };

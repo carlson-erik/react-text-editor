@@ -11,7 +11,7 @@ import {
 } from "slate-react";
 import { withHistory } from "slate-history";
 /* -------- Types -------- */
-import { GneissEditor, ElasticElement } from "./types";
+import { GneissEditor, EditorElement } from "./types";
 /* -------- Editor Components -------- */
 import BlockQuoteElement from "./elements/block-quote";
 import HeaderElement from "./elements/header";
@@ -150,8 +150,8 @@ const renderLeaf = (props: RenderLeafProps) => {
 
 export interface EditorProps {
   readOnly: boolean;
-  onChange: (content: ElasticElement[]) => void;
-  initialContent?: ElasticElement[];
+  onChange: (content: EditorElement[]) => void;
+  initialContent?: EditorElement[];
   toolbarMode: "bottom" | "top" | "hover" | "none";
 }
 
@@ -185,7 +185,7 @@ const Editor = (props: EditorProps) => {
      */
     if (value !== prevContent.current) {
       prevContent.current = value;
-      onChangeProp(value as ElasticElement[]);
+      onChangeProp(value as EditorElement[]);
     }
     /**
      * Updating internal state for safety.

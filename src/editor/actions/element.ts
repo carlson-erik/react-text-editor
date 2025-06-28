@@ -3,7 +3,7 @@ import { ReactEditor } from "slate-react";
 import {
   Alignment,
   GneissEditor,
-  ElasticElement,
+  EditorElement,
   ElementFormat,
   ElementType,
   ListElement,
@@ -25,7 +25,7 @@ import {
 } from "./";
 
 const isTextElement = (
-  element: ElasticElement | null
+  element: EditorElement | null
 ): element is TextElement => {
   return element && isTextElementType(element.type) ? true : false;
 };
@@ -34,7 +34,7 @@ const isTextElement = (
 const getElementNode = (
   editor: GneissEditor,
   customPath?: Path
-): ElasticElement | null => {
+): EditorElement | null => {
   let path;
   if (customPath) {
     path = customPath;
@@ -92,7 +92,7 @@ const getElementPath = (editor: GneissEditor): Path | null => {
   return elementPath;
 };
 
-const getParentElementNode = (editor: GneissEditor): ElasticElement | null => {
+const getParentElementNode = (editor: GneissEditor): EditorElement | null => {
   const parentPath = getParentElementPath(editor);
   if (parentPath === null) return null;
   return getElementNode(editor, parentPath);

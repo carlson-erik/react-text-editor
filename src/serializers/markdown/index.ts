@@ -1,15 +1,15 @@
 import { Node } from "slate";
-import { ElasticElement } from "../../editor/types";
+import { EditorElement } from "../../editor/types";
 import { isBlockQuoteElement, serializeBlockQuote } from "./blockquote";
 import { isHeaderElement, serializeHeader } from "./header";
 import { isListElement, serializeList } from "./list";
 import { isParagraphElement, serializeParagraph } from "./paragraph";
 
-const exportToMarkdown = (nodes: ElasticElement[]): string => {
+const exportToMarkdown = (nodes: EditorElement[]): string => {
   return nodes.map(transformNode).join("\n");
 };
 
-const transformNode = (node: ElasticElement): string => {
+const transformNode = (node: EditorElement): string => {
   if (isHeaderElement(node)) {
     return serializeHeader(node);
   }
