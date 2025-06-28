@@ -94,11 +94,11 @@ export type ElasticElement =
   | LinkInlineElement;
 
 /* -------- Editor -------- */
-export type ElasticEditor = BaseEditor & ReactEditor & HistoryEditor;
+export type GneissEditor = BaseEditor & ReactEditor & HistoryEditor;
 
 declare module "slate" {
   interface CustomTypes {
-    Editor: ElasticEditor;
+    Editor: GneissEditor;
     Element: ElasticElement;
     Text: TextLeaf;
   }

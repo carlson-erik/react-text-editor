@@ -2,7 +2,7 @@ import { Editor, Element, Transforms, Path } from "slate";
 import { ReactEditor } from "slate-react";
 import {
   Alignment,
-  ElasticEditor,
+  GneissEditor,
   ElasticElement,
   ElementFormat,
   ElementType,
@@ -32,7 +32,7 @@ const isTextElement = (
 
 /* ------------------------ Element Node Actions ------------------------ */
 const getElementNode = (
-  editor: ElasticEditor,
+  editor: GneissEditor,
   customPath?: Path
 ): ElasticElement | null => {
   let path;
@@ -71,7 +71,7 @@ const getElementNode = (
   return foundNode;
 };
 
-const getElementPath = (editor: ElasticEditor): Path | null => {
+const getElementPath = (editor: GneissEditor): Path | null => {
   if (!editor.selection) return null;
 
   const path = editor.selection.anchor.path;
@@ -92,13 +92,13 @@ const getElementPath = (editor: ElasticEditor): Path | null => {
   return elementPath;
 };
 
-const getParentElementNode = (editor: ElasticEditor): ElasticElement | null => {
+const getParentElementNode = (editor: GneissEditor): ElasticElement | null => {
   const parentPath = getParentElementPath(editor);
   if (parentPath === null) return null;
   return getElementNode(editor, parentPath);
 };
 
-const getParentElementPath = (editor: ElasticEditor): Path | null => {
+const getParentElementPath = (editor: GneissEditor): Path | null => {
   const elementPath = getElementPath(editor);
   if (elementPath === null || elementPath.length === 1) {
     return null;
@@ -109,7 +109,7 @@ const getParentElementPath = (editor: ElasticEditor): Path | null => {
 
 /* ------------------------ Element Type Actions ------------------------ */
 const isElementTypeActive = (
-  editor: ElasticEditor,
+  editor: GneissEditor,
   elementType: ElementType
 ): boolean => {
   const [match] = Editor.nodes(editor, {
@@ -119,7 +119,7 @@ const isElementTypeActive = (
 };
 
 const setElementType = (
-  editor: ElasticEditor,
+  editor: GneissEditor,
   elementType: ElementType
 ): void => {
   const selection = editor.selection;
@@ -210,7 +210,7 @@ const setElementType = (
 
 /* ------------------------ Element Format Actions ------------------------ */
 const isElementFormatActive = (
-  editor: ElasticEditor,
+  editor: GneissEditor,
   elementFormat: ElementFormat
 ) => {
   const [match] = Editor.nodes(editor, {
@@ -220,7 +220,7 @@ const isElementFormatActive = (
 };
 
 const hasElementFormatValue = (
-  editor: ElasticEditor,
+  editor: GneissEditor,
   elementFormat: ElementFormat,
   value: Alignment
 ) => {
@@ -234,7 +234,7 @@ const hasElementFormatValue = (
 };
 
 const setElementFormat = (
-  editor: ElasticEditor,
+  editor: GneissEditor,
   elementFormat: ElementFormat,
   value: Alignment
 ) => {

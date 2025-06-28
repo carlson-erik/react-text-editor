@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDarkMode } from "storybook-dark-mode";
 import type { Meta, StoryFn } from "@storybook/react";
-/* -------- ElasticEditor -------- */
+/* -------- GneissEditor -------- */
 import {
   ElasticElement,
-  ElasticEditor,
-  ElasticEditorProps,
+  GneissEditor,
+  GneissEditorProps,
   ThemeTypes,
 } from "../../src";
 import Button from "../../src/editor/toolbar/components/button";
@@ -99,8 +99,8 @@ const onExportClick = (
 };
 
 export default {
-  title: "ElasticEditor",
-  component: ElasticEditor,
+  title: "GneissEditor",
+  component: GneissEditor,
   argTypes: {
     readOnly: { control: "boolean" },
     themeType: { control: { disable: true } },
@@ -113,9 +113,9 @@ export default {
       options: ["copy", "download"],
     },
   },
-} as Meta<typeof ElasticEditor>;
+} as Meta<typeof GneissEditor>;
 
-interface EditorStoryProps extends ElasticEditorProps {
+interface EditorStoryProps extends GneissEditorProps {
   fileName: string;
   exportType: "copy" | "download";
 }
@@ -150,7 +150,7 @@ const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
               }}
               primary
             >
-              ElasticEditor
+              GneissEditor
             </Button>
             <Button
               onClick={() => {
@@ -172,7 +172,7 @@ const EditorStory: StoryFn<EditorStoryProps> = (args: EditorStoryProps) => {
             </Button>
           </ButtonContainer>
         </ThemeProvider>
-        <ElasticEditor
+        <GneissEditor
           {...args}
           {...themeProps}
           theme={DEFAULT_THEME}

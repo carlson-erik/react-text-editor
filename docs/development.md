@@ -29,7 +29,7 @@ Makes a static build of the storybook development environment to the `storybook-
 3. `npm run test` - Confirm the component is functioning correctly
 4. Publish version changes to `main`:
    - Create & push a version commit in your branch: `git commit -m "Version: X.Y.Z"`
-   - Create a [Pull Request](https://github.com/carlson-erik/elastic-editor/pulls) in the repository.
+   - Create a [Pull Request](https://github.com/carlson-erik/gneiss/pulls) in the repository.
    - Have a contributer approve your PR
    - Merge your PR into `main`
 5. Checkout & pull latest `main`

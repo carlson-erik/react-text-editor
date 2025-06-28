@@ -17,7 +17,7 @@ import {
 import Color from "../../icons/color";
 import styled from "styled-components";
 import { ThemeConfiguration } from "../../../theme/types";
-import { ElasticEditor, ElasticElement } from "../../../types";
+import { GneissEditor, ElasticElement } from "../../../types";
 import Button from "../../components/button";
 import { isLinkActive } from "../../../actions";
 
@@ -78,7 +78,7 @@ interface ColorConfigOverlayProps {
   currentNode: ElasticElement;
 }
 
-const getCurrentColor = (editor: ElasticEditor, primaryTextColor: string) => {
+const getCurrentColor = (editor: GneissEditor, primaryTextColor: string) => {
   const activeColor = getActiveTextColor(editor);
   return activeColor === "PRIMARY" ? primaryTextColor : activeColor;
 };

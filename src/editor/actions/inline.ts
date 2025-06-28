@@ -2,24 +2,24 @@ import { ReactEditor } from "slate-react";
 import { Editor, Element, Transforms, Range, Path } from "slate";
 import isUrl from "is-url";
 
-import { ElasticEditor, ElasticElement, LinkInlineElement } from "../types";
+import { GneissEditor, ElasticElement, LinkInlineElement } from "../types";
 import { getElementPath, getElementNode } from "./";
 
-const isInlineActive = (editor: ElasticEditor) => {
+const isInlineActive = (editor: GneissEditor) => {
   const [link] = Editor.nodes(editor, {
     match: (n) => Element.isElement(n) && n.type === "link",
   });
   return !!link;
 };
 
-const getContainer = (editor: ElasticEditor): ElasticElement | null => {
+const getContainer = (editor: GneissEditor): ElasticElement | null => {
   if (!isInlineActive(editor)) return null;
   const parentPath = getContainerPath(editor);
   if (!parentPath) return null;
   return getElementNode(editor, parentPath);
 };
 
-const getContainerPath = (editor: ElasticEditor): Path | null => {
+const getContainerPath = (editor: GneissEditor): Path | null => {
   if (!isInlineActive(editor)) return null;
   const path = getElementPath(editor);
   if (!path) return null;
@@ -27,14 +27,14 @@ const getContainerPath = (editor: ElasticEditor): Path | null => {
   return path;
 };
 
-const getContainerParent = (editor: ElasticEditor): ElasticElement | null => {
+const getContainerParent = (editor: GneissEditor): ElasticElement | null => {
   if (!isInlineActive(editor)) return null;
   const containerParentPath = getContainerParentPath(editor);
   if (!containerParentPath) return null;
   return getElementNode(editor, containerParentPath);
 };
 
-const getContainerParentPath = (editor: ElasticEditor): Path | null => {
+const getContainerParentPath = (editor: GneissEditor): Path | null => {
   if (!isInlineActive(editor)) return null;
   const containerPath = getContainerPath(editor);
   if (!containerPath || containerPath.length === 1) return null;
@@ -42,7 +42,7 @@ const getContainerParentPath = (editor: ElasticEditor): Path | null => {
   return containerPath;
 };
 
-const updateLink = (editor: ElasticEditor, url: string) => {
+const updateLink = (editor: GneissEditor, url: string) => {
   const elementPath = getElementPath(editor);
   if (isLinkActive(editor) && elementPath) {
     Transforms.setNodes(editor, { url }, { at: elementPath });
@@ -50,7 +50,7 @@ const updateLink = (editor: ElasticEditor, url: string) => {
   }
 };
 
-const insertLink = (editor: ElasticEditor, url: string, linkLabel?: string) => {
+const insertLink = (editor: GneissEditor, url: string, linkLabel?: string) => {
   if (!isLinkActive(editor)) {
     const link: LinkInlineElement = {
       type: "link",
@@ -63,7 +63,7 @@ const insertLink = (editor: ElasticEditor, url: string, linkLabel?: string) => {
   }
 };
 
-const isLinkActive = (editor: ElasticEditor) => {
+const isLinkActive = (editor: GneissEditor) => {
   const [link] = Editor.nodes(editor, {
     match: (n) =>
       !Editor.isEditor(n) && Element.isElement(n) && n.type === "link",
@@ -71,7 +71,7 @@ const isLinkActive = (editor: ElasticEditor) => {
   return !!link;
 };
 
-const wrapLink = (editor: ElasticEditor, url: string) => {
+const wrapLink = (editor: GneissEditor, url: string) => {
   if (isLinkActive(editor)) {
     unwrapLink(editor);
   }
@@ -92,14 +92,14 @@ const wrapLink = (editor: ElasticEditor, url: string) => {
   }
 };
 
-const unwrapLink = (editor: ElasticEditor) => {
+const unwrapLink = (editor: GneissEditor) => {
   Transforms.unwrapNodes(editor, {
     match: (n) =>
       !Editor.isEditor(n) && Element.isElement(n) && n.type === "link",
   });
 };
 
-const withInlines = (editor: ElasticEditor) => {
+const withInlines = (editor: GneissEditor) => {
   const { insertData, insertText, isInline } = editor;
 
   editor.isInline = (element: Element) => {

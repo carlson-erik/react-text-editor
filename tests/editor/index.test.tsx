@@ -3,13 +3,13 @@ import React from "react";
 import Editor from "../../src/editor";
 
 import { render, queryByTestId } from "@testing-library/react";
-import type { ElasticEditor } from "../../src/editor/types";
-import { getElasticEditor } from "../utils";
+import type { GneissEditor } from "../../src/editor/types";
+import { getGneissEditor } from "../utils";
 
 describe("Editor - Toolbar Modes ", () => {
-  let editor: ElasticEditor;
+  let editor: GneissEditor;
   beforeEach(() => {
-    editor = getElasticEditor();
+    editor = getGneissEditor();
   });
 
   test("Hovering Toolbar is configurable and works", async () => {

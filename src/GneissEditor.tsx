@@ -6,7 +6,7 @@ import Editor, { EditorProps } from "./editor";
 import { ThemeProvider } from "./editor/theme/context";
 import { ElasticElement } from "./editor/types";
 
-export type ElasticEditorProps = {
+export type GneissEditorProps = {
   /** Switches editor between editing (false) and read only (true) modes. */
   readOnly: boolean;
   /** onChange function that fires whenever there's a change in the editor's content. */
@@ -20,7 +20,7 @@ export type ElasticEditorProps = {
   themeType?: ThemeTypes;
 };
 
-const ElasticEditor = (props: ElasticEditorProps) => {
+const GneissEditor = (props: GneissEditorProps) => {
   const { readOnly, initialContent, theme, themeType, toolbarMode, onChange } =
     props;
   return (
@@ -35,4 +35,4 @@ const ElasticEditor = (props: ElasticEditorProps) => {
   );
 };
 
-export default ElasticEditor;
+export default GneissEditor;

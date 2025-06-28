@@ -4,13 +4,13 @@ import { render, screen } from "@testing-library/react";
 
 import UndoRedoSection from "../../../../src/editor/toolbar/sections/undo-redo";
 import { HANSEL_AND_GRETEL } from "../../../../stories/mocks/content";
-import { getElasticEditor } from "../../../utils";
-import { ElasticEditor } from "../../../../src/editor/types";
+import { getGneissEditor } from "../../../utils";
+import { GneissEditor } from "../../../../src/editor/types";
 
 describe("Undo & Redo Toolbar Section ", () => {
-  let editor: ElasticEditor;
+  let editor: GneissEditor;
   beforeEach(() => {
-    editor = getElasticEditor();
+    editor = getGneissEditor();
   });
   test("Section renders with undos and no redos", () => {
     editor.history.undos = [
