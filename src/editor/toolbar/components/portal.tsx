@@ -9,7 +9,7 @@ const Portal = (props: PortalProps) => {
   return typeof document === "object"
     ? ReactDOM.createPortal(
         children,
-        document.querySelector(".gneiss") || document.body
+        document.querySelector(".gneiss-editor") || document.body
       )
     : null;
 };

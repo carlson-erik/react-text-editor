@@ -1,12 +1,12 @@
 {
-  "name": "gneiss",
+  "name": "gneiss-editor",
   "version": "0.4.1",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
-  "umd": "dist/gneiss.js",
-  "umdMin": "dist/gneiss.min.js",
+  "umd": "dist/gneiss-editor.js",
+  "umdMin": "dist/gneiss-editor.min.js",
   "umdGlobals": {
     "react": "React"
   },

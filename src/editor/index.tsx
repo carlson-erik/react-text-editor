@@ -297,7 +297,7 @@ const Editor = (props: EditorProps) => {
 
   return (
     <Container
-      className="gneiss"
+      className="gneiss-editor"
       ref={setContainerRef}
       theme={theme[type]}
       readOnly={readOnly}
